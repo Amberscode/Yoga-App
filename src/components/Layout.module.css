@@ -1,0 +1,9 @@
+.main {
+  text-align: center;
+  background-color: rgb(243, 236, 227);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
