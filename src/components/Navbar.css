@@ -1,33 +1,29 @@
 .navbar-custom {
-  background-color: #42808a;
+  background-color: #74999f;
   margin-right: 0;
 }
 /* Modify brand and text color */
 
 .navbar-custom .navbar-brand {
-  color: #b3736b;
+  color: #e6cecb;
   font-weight: bold;
 }
 
 .navbar-custom .navbar-text {
-  color: #f8e2cb;
+  color: #e0e0e0;
 }
 
 .nav-link {
-  color: #f8e2cb;
-  text-decoration-color: #fdf5ed;
+  color: #e0e0e0;
+  text-decoration-color: #e0e0e0;
 }
 
 .navbar-toggler {
-  color: #b3736b;
+  color: #5e6b80;
 }
 
 .nav-link:hover,
 .nav-link:active,
 .nav-link:focus {
-  color: #fdf5ed;
-}
-
-.nav-link.active {
-  color: #fdf5ed !important;
+  color: #f5f5f5;
 }
