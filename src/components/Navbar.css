@@ -1,0 +1,33 @@
+.navbar-custom {
+  background-color: #42808a;
+  margin-right: 0;
+}
+/* Modify brand and text color */
+
+.navbar-custom .navbar-brand {
+  color: #b3736b;
+  font-weight: bold;
+}
+
+.navbar-custom .navbar-text {
+  color: #f8e2cb;
+}
+
+.nav-link {
+  color: #f8e2cb;
+  text-decoration-color: #fdf5ed;
+}
+
+.navbar-toggler {
+  color: #b3736b;
+}
+
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  color: #fdf5ed;
+}
+
+.nav-link.active {
+  color: #fdf5ed !important;
+}

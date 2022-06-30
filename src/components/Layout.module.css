@@ -1,6 +1,6 @@
 .main {
   text-align: center;
-  background-color: rgb(243, 236, 227);
+  background-color: #fdf5ed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

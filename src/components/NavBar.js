@@ -1,43 +1,50 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpa, faBars } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
+import { useState } from "react";
 
 const NavBar = () => {
+  /* https://stackoverflow.com/questions/52248179/how-to-use-data-toggle-collapse-in-reactjs-with-bootstrap */
+  const [show, setShow] = useState(false);
   return (
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <Link class="navbar-brand" to="/">
-          Home
+    <nav className="navbar navbar-expand-lg navbar-custom navbar-brand">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          <FontAwesomeIcon icon={faSpa} /> Home
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={() => setShow(!show)}
         >
-          <span class="navbar-toggler-icon"></span>
+          {/* <span className="navbar-toggler-icon"></span> */}
+          <FontAwesomeIcon icon={faBars} />
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <Link class="nav-link" aria-current="page" to="/about">
+        <div
+          style={show ? { display: "block" } : { display: "none" }}
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/about">
                 About
               </Link>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link" to="/schedule">
+            <li className="nav-item">
+              <Link className="nav-link" to="/schedule">
                 Schedule
               </Link>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link" to="/contact">
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
                 Contact
               </Link>
             </li>
           </ul>
-          <li class="d-flex">
-            <Link class="btn btn-outline-success" to="/login">
+          <li className="d-flex">
+            <Link className="btn btn-outline-success" to="/login">
               Sign In
             </Link>
           </li>
