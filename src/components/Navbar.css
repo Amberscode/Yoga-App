@@ -5,7 +5,7 @@
 /* Modify brand and text color */
 
 .navbar-custom .navbar-brand {
-  color: #e6cecb;
+  color: #f0d4d1;
   font-weight: bold;
 }
 
@@ -19,7 +19,8 @@
 }
 
 .navbar-toggler {
-  color: #5e6b80;
+  color: #e0e0e0;
+  border: #e0e0e0;
 }
 
 .nav-link:hover,
