@@ -1,5 +1,5 @@
 .btn-outline-success {
-  background-color: #e0e0e0;
+  background-color: #f2e5e3;
   color: #5e6b80;
   border: none;
   /* border-color: #505a68; */
@@ -7,7 +7,7 @@
 
 .btn-outline-success:hover,
 .btn-outline-success:focus {
-  background-color: #f2e5e3;
+  background-color: #f5f5f5;
   color: #5e6b80;
   border: none;
   box-shadow: unset;
