@@ -5,10 +5,10 @@ import "../styles/Contact.css";
 const Contact = () => {
   return (
     <Fragment>
-      <div className="container-fluid">
+      <div className="container-fluid contact-page-header ">
         <div className="row">
-          <div className="col">
-            <h1>Contact Page</h1>
+          <div className="col ">
+            <h1 className="">Contact Page</h1>
           </div>
         </div>
       </div>
