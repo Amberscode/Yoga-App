@@ -8,7 +8,7 @@ const Contact = () => {
       <div className="container-fluid contact-page-header ">
         <div className="row">
           <div className="col ">
-            <h1 className="">Contact Page</h1>
+            <h1 className="contact-h1">Contact Page</h1>
           </div>
         </div>
       </div>
