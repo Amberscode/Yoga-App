@@ -1,14 +1,26 @@
+.contact-page-header {
+  background: url("https://images.unsplash.com/photo-1504021624863-054aa77f753f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDMyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60");
+  height: 70vh;
+  background-size: cover;
+  background-position: 50%;
+  justify-content: center;
+}
+
+h1 {
+  padding-top: 20%;
+}
+
 .contact-page-content {
-  margin-top: 6rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  background-color: #74999f;
+  color: #ececec;
 }
 
 .contact-info {
   text-align: left;
-  padding: 4rem;
-}
-
-.maps-image {
-  height: 25rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .contact-page-row {
