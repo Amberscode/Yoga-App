@@ -8,7 +8,7 @@ const NavBar = () => {
   /* https://stackoverflow.com/questions/52248179/how-to-use-data-toggle-collapse-in-reactjs-with-bootstrap */
   const [show, setShow] = useState(false);
   return (
-    <nav className="navbar navbar-expand-lg navbar-custom navbar-brand fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-custom navbar-brand static-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <FontAwesomeIcon icon={faSpa} /> Home
