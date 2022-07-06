@@ -8,7 +8,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 // overwrite css
 import "./styles/global.css";
-import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
