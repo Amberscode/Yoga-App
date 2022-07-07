@@ -25,7 +25,7 @@ const Contact = () => {
               Jal., Mexico
             </p>
             <p>
-              <h5 className="location-header">E-Mail: </h5>{" "}
+              <h5 className="location-header">E-Mail: </h5>
               yogastudio@contact.com
             </p>
             <p>
