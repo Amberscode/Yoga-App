@@ -1,6 +1,6 @@
 .contact-page-header {
   position: relative;
-  height: 90vh;
+  height: 80vh;
 }
 
 .contact-page-header:before {
@@ -10,12 +10,25 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   opacity: 0.2;
   background: url("https://images.unsplash.com/photo-1571631546851-e4c964c616a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDEzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60")
-    repeat fixed 100%;
+    repeat 100%;
   background-size: cover;
   background-position: 50%;
+}
+
+@media (max-width: 880px) {
+  .contact-page-header {
+    height: 60vh;
+  }
+  .contact-page-header:before {
+    background: url("https://images.unsplash.com/photo-1571631546851-e4c964c616a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDEzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60")
+      no-repeat 100%;
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+  }
 }
 
 .contact-h1 {
