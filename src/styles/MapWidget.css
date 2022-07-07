@@ -1,7 +1,7 @@
 .map-responsive {
   overflow: hidden;
 
-  padding-bottom: 56.25%;
+  padding-bottom: 49.4%;
 
   position: relative;
 
@@ -17,5 +17,9 @@
 
   width: 100%;
 
+  object-fit: fill;
+
   position: absolute;
+
+  border-radius: 2%;
 }

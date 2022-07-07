@@ -6,8 +6,8 @@ const MapWidget = () => {
       <iframe
         // height="400"
         // width="520"
-        height="400"
-        width="520"
+        // height="100%"
+        // width="100%"
         frameborder="0"
         scrolling="no"
         marginheight="0"
