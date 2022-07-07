@@ -29,7 +29,7 @@ const Contact = () => {
               yogastudio@contact.com
             </p>
             <p>
-              <h5 className="location-header">Phone: </h5> 555-5555
+              <h5 className="location-header">Phone: </h5> (322) 555-5555
             </p>
           </div>
           <div className="col-md-6 maps-image">
