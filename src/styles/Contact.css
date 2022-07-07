@@ -49,6 +49,8 @@ contact-page-row {
 .contact-page-content {
   padding-top: 4rem;
   padding-bottom: 4rem;
+  /* background-color: #93afb4; */
+  color: #f6f2f2;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -60,9 +62,12 @@ contact-page-row {
 .contact-info {
   text-align: left;
   font-size: 1.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
   /* background-color: #f2e5e3; */
-  background-color: #93afb4;
-  border-radius: 2%;
+  background-color: #74999f;
+  border-radius: 15px;
   margin-bottom: 1.5rem;
 }
 
