@@ -1,0 +1,21 @@
+.price-grid {
+  margin-bottom: 50px;
+}
+
+.price-grid-pink {
+  background-color: #f0d4d1;
+  color: white;
+  height: 18rem;
+  padding-top: 6rem;
+}
+
+.price-grid-blue {
+  background-color: #74999f;
+  color: white;
+  height: 18rem;
+  padding-top: 6rem;
+}
+
+.price-description {
+  font-weight: bolder;
+}
