@@ -4,7 +4,7 @@
 
 .price-grid-pink {
   background-color: #f0d4d1;
-  color: white;
+  color: #5e6b80;
   height: 18rem;
   padding-top: 6rem;
 }
@@ -18,4 +18,8 @@
 
 .price-description {
   font-weight: bolder;
+}
+
+.price {
+  font-size: 2rem;
 }
