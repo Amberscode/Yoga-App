@@ -1,4 +1,5 @@
 import PriceGrid from "../components/PriceGrid";
+import StylesGrid from "../components/StylesGrid";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -41,24 +42,8 @@ const Home = () => {
         </div>
       </section>
 
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-        minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis
-        quibusdam, ex totam aliquam provident alias culpa, sit illo, eum
-        doloribus doloremque. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Excepturi reprehenderit voluptatum aperiam pariatur numquam
-        praesentium recusandae, ipsa at iusto eveniet, distinctio sunt dolore
-        nemo veniam maiores vitae deserunt cum ducimus.
-      </h4>
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-        minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis
-        quibusdam, ex totam aliquam provident alias culpa, sit illo, eum
-        doloribus doloremque. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Excepturi reprehenderit voluptatum aperiam pariatur numquam
-        praesentium recusandae, ipsa at iusto eveniet, distinctio sunt dolore
-        nemo veniam maiores vitae deserunt cum ducimus.
-      </h4>
+      <h2 className="styles-header">Yoga Styles</h2>
+      <StylesGrid />
 
       <section className="parallax-2">
         <div className="parallax-inner">

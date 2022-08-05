@@ -11,7 +11,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-custom navbar-brand fixed-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <FontAwesomeIcon icon={faSpa} /> Home
+          <FontAwesomeIcon icon={faSpa} /> Yoga
         </Link>
         <button
           className="navbar-toggler"

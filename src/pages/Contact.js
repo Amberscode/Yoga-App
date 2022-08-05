@@ -11,7 +11,7 @@ const Contact = () => {
             <h1 className="contact-h1 display-3">Contact Us</h1>
             <p className="contact-header-blurb">
               We are always available to answer any questions that you may have
-              about classes or our studio. Contact us if you want to learn more.
+              about classes or our studio. Contact us to learn more.
             </p>
           </div>
         </div>
