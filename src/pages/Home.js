@@ -1,8 +1,9 @@
 import PriceGrid from "../components/PriceGrid";
 import StylesGrid from "../components/StylesGrid";
 import "../styles/Home.css";
+import { useState } from "react";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
       <section className="parallax">
@@ -43,8 +44,11 @@ const Home = () => {
       </section>
 
       <h2 className="styles-header">Yoga Styles</h2>
-      <StylesGrid />
-
+      <StylesGrid
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
+      // hover={hover}
+      />
       <section className="parallax-2">
         <div className="parallax-inner">
           <h3>
