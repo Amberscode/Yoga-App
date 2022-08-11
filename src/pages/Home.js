@@ -44,11 +44,7 @@ const Home = (props) => {
       </section>
 
       <h2 className="styles-header">Yoga Styles</h2>
-      <StylesGrid
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
-      // hover={hover}
-      />
+      <StylesGrid />
       <section className="parallax-2">
         <div className="parallax-inner">
           <h3>

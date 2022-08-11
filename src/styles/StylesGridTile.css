@@ -1,4 +1,4 @@
-/* .style-tile {
+.style-tile {
   padding: 0;
   max-width: 100%;
   height: auto;
@@ -33,4 +33,4 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
-} */
+}
