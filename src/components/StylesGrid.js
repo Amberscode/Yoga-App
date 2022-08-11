@@ -5,21 +5,20 @@ import childpose from "./yoga-images/ChildPose.jpeg";
 import kingdancer from "./yoga-images/KingDancer.jpeg";
 import kingpigeon from "./yoga-images/KingPigeon.jpeg";
 import sideangle from "./yoga-images/SideAngle.jpeg";
-import "./StylesGridTile";
 import StylesGridTile from "./StylesGridTile";
 
 const StylesGrid = () => {
   return (
     <div className="container-fluid  mt-3 mb-5">
-      <div className="row justify-content-md-center mx-5">
+      <div className="row justify-content-md-center mx-5 style-row">
         <StylesGridTile yogaImage={kingpigeon} yogaStyle={"Hatha Yoga"} />
         <StylesGridTile yogaImage={sideangle} yogaStyle={"Vinyasa Flow"} />
         <StylesGridTile yogaImage={childpose} yogaStyle={"Yin Yoga"} />
       </div>
-      <div className="row justify-content-md-center mx-5">
+      <div className="row justify-content-md-center mx-5 style-row">
         <StylesGridTile yogaImage={aerial} yogaStyle={"Aerial Yoga"} />
         <StylesGridTile yogaImage={kingdancer} yogaStyle={"Power Yoga"} />
-        <StylesGridTile number={6} yogaImage={acro} yogaStyle={"Acro Yoga"} />
+        <StylesGridTile yogaImage={acro} yogaStyle={"Acro Yoga"} />
       </div>
     </div>
   );

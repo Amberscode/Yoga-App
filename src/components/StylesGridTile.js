@@ -14,7 +14,11 @@ const StylesGridTile = (props) => {
 
   return (
     <div className="col-md-3 style-tile">
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="style-image"
+      >
         <img
           src={props.yogaImage}
           className="img-fluid style-image"
