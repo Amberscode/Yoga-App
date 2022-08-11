@@ -7,7 +7,7 @@ import kingpigeon from "./yoga-images/KingPigeon.jpeg";
 import sideangle from "./yoga-images/SideAngle.jpeg";
 import { useState } from "react";
 
-const StylesGrid = (props) => {
+const StylesGrid = () => {
   const [aerialHover, setAerialHover] = useState(false);
   const [acroHover, setAcroHover] = useState(false);
   const [hathaHover, setHathaHover] = useState(false);
