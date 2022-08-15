@@ -1,5 +1,6 @@
 .price-grid {
   margin-bottom: 50px;
+  justify-content: center;
 }
 
 .price-grid-pink {
@@ -7,6 +8,7 @@
   color: #5e6b80;
   height: 18rem;
   padding-top: 6rem;
+  justify-content: center;
 }
 
 .price-grid-blue {
@@ -14,12 +16,15 @@
   color: white;
   height: 18rem;
   padding-top: 6rem;
+  justify-content: center;
 }
 
 .price-description {
   font-weight: bolder;
+  text-align: center;
 }
 
 .price {
   font-size: 2rem;
+  text-align: center;
 }
