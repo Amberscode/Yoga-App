@@ -44,7 +44,7 @@ const Home = (props) => {
         </div>
       </section>
 
-      <h2 className="styles-header">Yoga Styles</h2>
+      <h2 className="styles-header align-middle">Yoga Styles</h2>
       <StylesGrid />
       <section className="parallax-2">
         <div className="parallax-inner">
@@ -64,7 +64,7 @@ const Home = (props) => {
         </div>
       </section>
 
-      <h2 className="price-header">Pricing</h2>
+      <h2 className="price-header align-middle">Pricing</h2>
       <PriceGrid />
 
       <section className="parallax-3">

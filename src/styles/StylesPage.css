@@ -1,0 +1,52 @@
+.styles-header {
+  display: block;
+  padding-top: 2rem;
+}
+
+.styles-row {
+  margin-top: 3rem;
+}
+
+@media (max-width: 992px) {
+  .styles-row {
+    margin-top: 1rem;
+  }
+}
+
+.styles-image {
+  display: block;
+  max-width: 60%;
+  height: auto;
+  border-radius: 8px;
+  justify-content: center;
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .styles-image {
+    max-width: 90%;
+  }
+}
+
+.styles-text {
+  text-align: justify;
+  font-size: 1.3rem;
+  padding-left: 2rem;
+  padding-right: 8rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .styles-text {
+    padding-left: 1rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .styles-text {
+    margin-top: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
