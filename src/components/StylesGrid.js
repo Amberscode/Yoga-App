@@ -11,14 +11,38 @@ const StylesGrid = () => {
   return (
     <div className="container-fluid  mt-3 mb-5">
       <div className="row justify-content-md-center mx-5 style-row">
-        <StylesGridTile yogaImage={kingpigeon} yogaStyle={"Hatha Yoga"} />
-        <StylesGridTile yogaImage={sideangle} yogaStyle={"Vinyasa Flow"} />
-        <StylesGridTile yogaImage={childpose} yogaStyle={"Yin Yoga"} />
+        <StylesGridTile
+          yogaImage={kingpigeon}
+          yogaStyle={"Hatha Yoga"}
+          stylePage={"/hatha"}
+        />
+        <StylesGridTile
+          yogaImage={sideangle}
+          yogaStyle={"Vinyasa Flow"}
+          stylePage={"/vinyasa"}
+        />
+        <StylesGridTile
+          yogaImage={childpose}
+          yogaStyle={"Yin Yoga"}
+          stylePage={"/yin"}
+        />
       </div>
       <div className="row justify-content-md-center mx-5 style-row">
-        <StylesGridTile yogaImage={aerial} yogaStyle={"Aerial Yoga"} />
-        <StylesGridTile yogaImage={kingdancer} yogaStyle={"Power Yoga"} />
-        <StylesGridTile yogaImage={acro} yogaStyle={"Acro Yoga"} />
+        <StylesGridTile
+          yogaImage={aerial}
+          yogaStyle={"Aerial Yoga"}
+          stylePage={"/aerial"}
+        />
+        <StylesGridTile
+          yogaImage={kingdancer}
+          yogaStyle={"Power Yoga"}
+          stylePage={"/power"}
+        />
+        <StylesGridTile
+          yogaImage={acro}
+          yogaStyle={"Acro Yoga"}
+          stylePage={"/acro"}
+        />
       </div>
     </div>
   );

@@ -50,6 +50,7 @@ about-page-row {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   text-align: center;
+  display: block;
 }
 
 .about-text {
@@ -71,6 +72,13 @@ about-page-row {
   height: auto;
   border-radius: 8px;
   justify-content: center;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .about-image {
+    max-width: 98%;
+  }
 }
 
 .price-header {
@@ -80,5 +88,6 @@ about-page-row {
 }
 
 .price-text {
-  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }

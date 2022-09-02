@@ -134,11 +134,16 @@
 .price-header {
   margin-top: 50px;
   margin-bottom: 25px;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
 }
 
 .styles-header {
   margin-top: 40px;
   margin-bottom: 25px;
+  text-align: center;
+  justify-content: center;
 }
 
 h3 {
