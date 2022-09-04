@@ -1,14 +1,10 @@
 .login-page {
   text-align: left;
   vertical-align: middle;
-  padding-top: 3rem;
+  padding-top: 2rem;
   margin-top: 2rem;
   background-color: #74999f;
   min-height: 100vh;
-}
-
-.divider {
-  border-top: 8px solid #e0e0e0;
 }
 
 @media (max-width: 767px) {
@@ -24,6 +20,22 @@
   margin: 3rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   align-items: left;
+}
+
+@media (max-width: 991px) {
+  .login-form {
+    padding: 3rem;
+    margin: 8rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 787px) {
+  .login-form {
+    padding: 2rem;
+    margin: 5rem;
+    align-items: center;
+  }
 }
 
 @media (max-width: 535px) {

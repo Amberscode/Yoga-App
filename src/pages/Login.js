@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <div className="login-page container-fluid">
-      <div className="row divider">
+      <div className="row">
         <div className="col-xl-7 col-lg-6  login-design order-2 order-lg-1">
           <FontAwesomeIcon icon={faSpa} className="yoga-icon" />
           <p className="yoga-logo-text">Yoga Studio</p>
