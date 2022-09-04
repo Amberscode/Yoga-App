@@ -44,7 +44,7 @@ const NavBar = () => {
             </li>
           </ul>
           <li className="d-flex">
-            <Link className="btn btn-outline-success" to="/login">
+            <Link className="btn btn-outline-success nav-btn" to="/login">
               Sign In
             </Link>
           </li>
