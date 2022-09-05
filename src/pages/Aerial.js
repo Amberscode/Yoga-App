@@ -1,5 +1,6 @@
 import aerial from "../components/yoga-images/aerial.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Aerial = () => {
   return (
@@ -16,7 +17,7 @@ const Aerial = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Aerial yoga uses a suspended hammock or yoga silk to provide support
             to the body while performing asanas. The support from the aerial
             hammock allows students to improve their flexibility and perform
@@ -27,6 +28,7 @@ const Aerial = () => {
             elevating the mood and quieting the mind. Aerial yoga is perfect for
             students of all levels.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import acro from "../components/yoga-images/Acro.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Acro = () => {
   return (
@@ -16,7 +17,7 @@ const Acro = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Acro yoga is a playful and acrobatic form of yoga, usually performed
             with a partner. This class incorporates elements of vinyasa and
             hatha yoga but also acrobatics and Thai massage. Yogis work together
@@ -26,6 +27,7 @@ const Acro = () => {
             welcome to join. Students may choose to bring their own partner or
             pair up with other students in the class.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@
 }
 
 .styles-text {
+  display: block;
   text-align: justify;
   font-size: 1.3rem;
   padding-left: 2rem;
@@ -49,4 +50,8 @@
     padding-left: 3rem;
     padding-right: 3rem;
   }
+}
+
+.styles-text-content {
+  text-align: justify;
 }

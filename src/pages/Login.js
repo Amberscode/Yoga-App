@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
@@ -91,6 +92,12 @@ const Login = () => {
               Sign In
             </button>
           </form>
+          <p className="sign-up-text">
+            New to the studio? Click below to sign up!
+          </p>
+          <Link className="btn btn-outline-success signUp-btn" to="/signup">
+            Register
+          </Link>
         </div>
       </div>
     </div>

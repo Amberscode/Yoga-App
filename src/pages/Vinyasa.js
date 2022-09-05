@@ -1,5 +1,6 @@
 import sideangle from "../components/yoga-images/SideAngle.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Vinyasa = () => {
   return (
@@ -16,7 +17,7 @@ const Vinyasa = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Vinyasa Yoga combines dynamic, fluid movement with conscious,
             deliberate breath. It is a creative and playful style of yoga that
             expolores bending, twisting, stretching, strength, balance and
@@ -28,6 +29,7 @@ const Vinyasa = () => {
             is suitable for yogis of all levels, however a knowledge of basic
             asanas is beneficial to safely get the most out of this class.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>

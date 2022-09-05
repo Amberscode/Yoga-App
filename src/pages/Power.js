@@ -1,5 +1,6 @@
 import kingdancer from "../components/yoga-images/KingDancer.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Power = () => {
   return (
@@ -16,7 +17,7 @@ const Power = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Power yoga is a strong, energetic style of yoga adapted from vinyasa
             flow and ashtanga yoga. This practice is a vigorous and revitalizing
             form of physical fitness. Power yoga incorporates strength,
@@ -29,6 +30,7 @@ const Power = () => {
             increase the physical intensity of their practice and focus on the
             exercise aspect of yoga.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>

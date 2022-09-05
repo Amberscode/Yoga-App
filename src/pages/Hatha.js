@@ -1,5 +1,6 @@
 import kingpigeon from "../components/yoga-images/KingPigeon.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Hatha = () => {
   return (
@@ -16,7 +17,7 @@ const Hatha = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Hatha yoga focuses on developing awareness, strength, flexibility,
             and relaxation through the pairing of yoga asanas (postures) and
             conscious breathing (pranayama). In hatha yoga classes, asanas are
@@ -27,6 +28,7 @@ const Hatha = () => {
             for beginners to learn yoga asanas and for experienced yogis to
             perfect their form.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>

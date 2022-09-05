@@ -1,5 +1,6 @@
 import childpose from "../components/yoga-images/ChildPose.jpeg";
 import "../styles/StylesPage.css";
+import BackButton from "../components/BackButton";
 
 const Yin = () => {
   return (
@@ -16,7 +17,7 @@ const Yin = () => {
           />
         </div>
         <div className="col-lg-6 styles-text">
-          <p>
+          <p className="styles-text-content">
             Yin yoga is gentle and restoritave form of yoga consisting mainly of
             passive stretches held for long durations, often around five
             minutes. This slower, more meditative style of yoga targets the deep
@@ -27,6 +28,7 @@ const Yin = () => {
             or individuals looking to de-stress and find ease. This class is
             suitable for students of all levels.
           </p>
+          <BackButton />
         </div>
       </div>
     </div>
