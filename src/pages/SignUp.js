@@ -22,20 +22,30 @@ const SignUp = () => {
 
   const handleSubmitSignUp = async (event) => {
     event.preventDefault();
-    const userData = {
+    const newUserData = {
       firstName: registerFormValue.firstName,
       lastName: registerFormValue.lastName,
       email: registerFormValue.email,
       password: registerFormValue.password,
     };
-    console.log(userData);
-    setRegisterFormValue({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      reenterPassword: "",
-    });
+    console.log(newUserData);
+
+    try {
+      let responseFromServer = await axios.post(
+        "http://localhost:80/user/create",
+        newUserData
+      );
+      console.log(responseFromServer.data);
+      setRegisterFormValue({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        reenterPassword: "",
+      });
+    } catch (e) {
+      console.log(e, "something went wrong");
+    }
   };
 
   return (
