@@ -1,36 +1,41 @@
 import { useState } from "react";
+import axios from "axios";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
-  const [firstNameValue, setFirstNameValue] = useState("");
-  const [lastNameValue, setLastNameValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [reenterPasswordValue, setReenterPasswordValue] = useState("");
-  // const firstNameInput = firstNameValue;
-  // const lastNameInput = lastNameValue;
-  // const emailInput = emailValue;
+  const [registerFormValue, setRegisterFormValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    reenterPassword: "",
+  });
 
-  const handleFirstNameChange = (event) => {
-    setFirstNameValue(event.target.value);
+  const handleRegisterFormChange = (event) => {
+    setRegisterFormValue({
+      ...registerFormValue,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const handleLastNameChange = (event) => {
-    setLastNameValue(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmailValue(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPasswordValue(event.target.value);
-  };
-
-  const handleReenterPasswordChange = (event) => {
-    setReenterPasswordValue(event.target.value);
+  const handleSubmitSignUp = async (event) => {
+    event.preventDefault();
+    const userData = {
+      firstName: registerFormValue.firstName,
+      lastName: registerFormValue.lastName,
+      email: registerFormValue.email,
+      password: registerFormValue.password,
+    };
+    console.log(userData);
+    setRegisterFormValue({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      reenterPassword: "",
+    });
   };
 
   return (
@@ -41,40 +46,43 @@ const SignUp = () => {
           <p className="yoga-logo-text">Yoga Studio</p>
         </div>
         <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmitSignUp}>
             <h1>Create your account</h1>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="firstName">First Name</label>
               <input
                 type="text"
-                class="form-control"
+                name="firstName"
+                className="form-control"
                 id="firstName"
-                value={firstNameValue}
-                onChange={handleFirstNameChange}
+                value={registerFormValue.firstName}
+                onChange={handleRegisterFormChange}
                 aria-describedby="firstName"
                 // placeholder="Enter your first name"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="LastName">Last Name</label>
               <input
                 type="text"
+                name="lastName"
                 className="form-control"
                 id="lastName"
-                value={lastNameValue}
-                onChange={handleLastNameChange}
+                value={registerFormValue.lastName}
+                onChange={handleRegisterFormChange}
                 aria-describedby="LastName"
                 // placeholder="Enter your last name"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                name="email"
                 className="form-control"
                 id="email"
-                value={emailValue}
-                onChange={handleEmailChange}
+                value={registerFormValue.email}
+                onChange={handleRegisterFormChange}
                 aria-describedby="email"
                 // placeholder="Enter your email"
               />
@@ -82,29 +90,31 @@ const SignUp = () => {
                 We'll never share your email with anyone else.
               </small>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="passwordInput">Create a Password</label>
               <input
                 type="password"
+                name="password"
                 className="form-control"
                 id="passwordInput"
-                value={passwordValue}
-                onChange={handlePasswordChange}
+                value={registerFormValue.password}
+                onChange={handleRegisterFormChange}
               />
               <small id="passwordRequirements" className="form-text text-muted">
                 Must be at least 6 characters long.
               </small>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="reenterPasswordInput">
                 Re-enter Your Password
               </label>
               <input
                 type="password"
+                name="reenterPassword"
                 className="form-control"
                 id="reenterPasswordInput"
-                value={reenterPasswordValue}
-                onChange={handleReenterPasswordChange}
+                value={registerFormValue.reenterPassword}
+                onChange={handleRegisterFormChange}
               />
             </div>
             <button type="submit" className="btn login-btn">
