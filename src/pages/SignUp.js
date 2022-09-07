@@ -28,6 +28,7 @@ const SignUp = () => {
       email: registerFormValue.email,
       password: registerFormValue.password,
     };
+    console.log(newUserData);
 
     try {
       let responseFromServer = await axios.post(
