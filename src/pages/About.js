@@ -62,7 +62,7 @@ const About = () => {
         </div>
 
         <div className="row about-page-row about-text">
-          <h2 className="price-header">Pricing</h2>
+          <h2 className="about-price-header">Pricing</h2>
           <p className="price-text">
             At Yoga Studio you are free to choose which yoga classes to attend
             each week. Simply purchase a package at our studio and register for

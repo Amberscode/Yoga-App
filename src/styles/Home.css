@@ -135,15 +135,22 @@
   margin-top: 50px;
   margin-bottom: 25px;
   text-align: center;
-  justify-content: center;
-  align-self: center;
+}
+
+.center-header {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.no-pad {
+  padding: 0px;
 }
 
 .styles-header {
   margin-top: 40px;
   margin-bottom: 25px;
   text-align: center;
-  justify-content: center;
 }
 
 h3 {
@@ -163,4 +170,9 @@ h4 {
 h1 {
   text-align: center;
   color: #5e6b80;
+}
+
+h2 {
+  text-align: center;
+  align-items: center;
 }

@@ -43,8 +43,12 @@ const Home = (props) => {
           </h3>
         </div>
       </section>
+      <div className="container no-pad">
+        <div className="row center-header">
+          <h2 className="styles-header">Yoga Styles</h2>
+        </div>
+      </div>
 
-      <h2 className="styles-header align-middle">Yoga Styles</h2>
       <StylesGrid />
       <section className="parallax-2">
         <div className="parallax-inner">
@@ -63,8 +67,11 @@ const Home = (props) => {
           </h3>
         </div>
       </section>
-
-      <h2 className="price-header align-middle">Pricing</h2>
+      <div className="container no-pad">
+        <div className="row center-header">
+          <h2 className="price-header text-center">Pricing</h2>
+        </div>
+      </div>
       <PriceGrid />
 
       <section className="parallax-3">
