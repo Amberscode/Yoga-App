@@ -12,10 +12,12 @@ import Yin from "./pages/Yin";
 import Aerial from "./pages/Aerial";
 import Acro from "./pages/Acro";
 import Power from "./pages/Power";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
     <Layout>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
