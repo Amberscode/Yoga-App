@@ -153,11 +153,30 @@
   text-align: center;
 }
 
-h3 {
-  margin-left: 50px;
-  margin-right: 50px;
+.quote-text {
+  margin-left: 100px;
+  margin-right: 100px;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+}
+
+.quote-by {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+@media (max-width: 600px) {
+  .quote-text {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  .quote-by {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 50px;
+  }
 }
 
 h4 {

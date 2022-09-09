@@ -32,13 +32,13 @@ const Home = (props) => {
       </h4>
       <section className="parallax-1">
         <div className="parallax-inner">
-          <h3>
+          <h3 className="quote-text">
             <em>
               “Yoga does not just change the way we see things, it transforms
               the person who sees.”
             </em>
           </h3>
-          <h3 className="float-end">
+          <h3 className="float-end quote-by">
             <em>― B.K.S Iyengar</em>
           </h3>
         </div>
@@ -52,7 +52,7 @@ const Home = (props) => {
       <StylesGrid />
       <section className="parallax-2">
         <div className="parallax-inner">
-          <h3>
+          <h3 className="quote-text">
             <em>
               “True yoga is not about the shape of your body, but the shape of
               your life. Yoga is not to be performed; yoga is to be lived. Yoga
@@ -62,7 +62,7 @@ const Home = (props) => {
               embodied.”
             </em>
           </h3>
-          <h3 className="float-end">
+          <h3 className="float-end quote-by">
             <em>— Aadil Palkhivala</em>
           </h3>
         </div>
@@ -76,12 +76,12 @@ const Home = (props) => {
 
       <section className="parallax-3">
         <div className="parallax-inner">
-          <h3>
+          <h3 className="quote-text">
             <em>
               “Yoga is the journey of the self, through the self, to the self.”
             </em>
           </h3>
-          <h3 className="float-end">
+          <h3 className="float-end quote-by">
             <em>― The Bhagavad Gita</em>
           </h3>
         </div>
