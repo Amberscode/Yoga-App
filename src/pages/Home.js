@@ -8,7 +8,9 @@ const Home = (props) => {
     <div>
       <section className="parallax">
         <div className="parallax-inner-1">
-          <h1 className="display-1">Welcome to Yoga</h1>
+          <h1 className="display-1 welcome-text align-middle">
+            Welcome to Yoga
+          </h1>
         </div>
       </section>
       <h4>

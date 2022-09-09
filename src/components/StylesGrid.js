@@ -10,7 +10,7 @@ import StylesGridTile from "./StylesGridTile";
 const StylesGrid = () => {
   return (
     <div className="container-fluid  mt-3 mb-5">
-      <div className="row justify-content-md-center mx-5 style-row">
+      <div className="row justify-content-md-center mx-2 style-row">
         <StylesGridTile
           yogaImage={kingpigeon}
           yogaStyle={"Hatha Yoga"}
@@ -27,7 +27,7 @@ const StylesGrid = () => {
           stylePage={"/yin"}
         />
       </div>
-      <div className="row justify-content-md-center mx-5 style-row">
+      <div className="row justify-content-md-center mx-2 style-row">
         <StylesGridTile
           yogaImage={aerial}
           yogaStyle={"Aerial Yoga"}
