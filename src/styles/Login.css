@@ -106,9 +106,21 @@
 }
 
 .signUp-btn {
-  margin-right: 5rem;
+  margin-right: 20%;
   margin-bottom: 2rem;
   float: right;
+}
+
+@media (max-width: 991px) {
+  .signUp-btn {
+    margin-right: 30%;
+  }
+}
+
+@media (max-width: 800px) {
+  .signUp-btn {
+    margin-right: 20%;
+  }
 }
 
 .signUp-btn:active {
