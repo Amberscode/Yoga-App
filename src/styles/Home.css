@@ -205,20 +205,21 @@
   margin-right: 60px;
   margin-top: 50px;
   margin-bottom: 50px;
-  text-align: center;
 }
 
 .lower-content-title {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .lower-content-columns {
   padding-left: 10px;
   padding-right: 10px;
+  text-align: left;
 }
 
 .lower-content-para {
-  text-align: justify;
+  text-align: left;
   font-size: 18px;
 }
 

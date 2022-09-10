@@ -122,8 +122,8 @@ const Home = (props) => {
           <div className="col-md-3 lower-content-columns">
             <h4>Space</h4>
             <p className="lower-content-para">
-              Yoga studio is dedicated to cultivating a peaceful and welcoming
-              space for students to explore and grow.
+              A peaceful and welcoming environment for students to explore and
+              grow.
             </p>
           </div>
         </div>
