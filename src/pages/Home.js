@@ -2,6 +2,12 @@ import PriceGrid from "../components/PriceGrid";
 import StylesGrid from "../components/StylesGrid";
 import "../styles/Home.css";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faVihara,
+  faDharmachakra,
+  faHandSparkles,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Home = (props) => {
   return (
@@ -13,24 +19,21 @@ const Home = (props) => {
           </h1>
         </div>
       </section>
-      <h4>
-        Our studio offers a variety of styles of yoga suitable for students of
-        all levels. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Veritatis minima fuga debitis quasi eius aliquid sapiente? Cumque
-        blanditiis quibusdam, ex totam aliquam provident alias culpa, sit illo,
-        eum doloribus doloremque. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Excepturi reprehenderit voluptatum aperiam pariatur
-        numquam praesentium recusandae, ipsa at iusto eveniet, distinctio sunt
-        dolore nemo veniam maiores vitae deserunt cum ducimus.
+      <h4 className="home-h4-text">
+        Yoga studio is dedicated to providing a relaxed and positive atmosphere
+        for our yoga community to explore happiness, health and personal growth
+        together. Our studio offers a variety of styles of yoga suitable for
+        students of all levels. We believe that yoga is a about understanding
+        and developing our inner self through breath and movement. Our studio
+        aims to provide a welcoming space for students to experience positive
+        states of body and mind, allowing them to ultimately discover their true
+        physical and inner potential.
       </h4>
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-        minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis
-        quibusdam, ex totam aliquam provident alias culpa, sit illo, eum
-        doloribus doloremque. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Excepturi reprehenderit voluptatum aperiam pariatur numquam
-        praesentium recusandae, ipsa at iusto eveniet, distinctio sunt dolore
-        nemo veniam maiores vitae deserunt cum ducimus.
+      <h4 className="home-h4-text">
+        A one of a kind environment, Yoga studio is the epicenter of renewal,
+        healing and self-discovery in Marina Vallarta. Classes are held daily at
+        7:00 a.m., 10:00 a.m., 2:00 p.m. and 6:30 p.m. Visit our schedule page
+        to select the class that is best for you.
       </h4>
       <section className="parallax-1">
         <div className="parallax-inner">
@@ -88,24 +91,43 @@ const Home = (props) => {
           </h3>
         </div>
       </section>
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-        minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis
-        quibusdam, ex totam aliquam provident alias culpa, sit illo, eum
-        doloribus doloremque. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Excepturi reprehenderit voluptatum aperiam pariatur numquam
-        praesentium recusandae, ipsa at iusto eveniet, distinctio sunt dolore
-        nemo veniam maiores vitae deserunt cum ducimus.
-      </h4>
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-        minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis
-        quibusdam, ex totam aliquam provident alias culpa, sit illo, eum
-        doloribus doloremque. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Excepturi reprehenderit voluptatum aperiam pariatur numquam
-        praesentium recusandae, ipsa at iusto eveniet, distinctio sunt dolore
-        nemo veniam maiores vitae deserunt cum ducimus.
-      </h4>
+      <div className="home-lower-content">
+        <div className="row lower-content-title">
+          <h3>Why Choose Yoga Studio?</h3>
+        </div>
+        <div className="row ">
+          <div className="col-md-1 lower-icon">
+            <FontAwesomeIcon icon={faHandSparkles} />
+          </div>
+          <div className="col-md-3 lower-content-columns">
+            <h4>Experience</h4>
+            <p className="lower-content-para">
+              Experienced teachers with a passion for helping you on your
+              journey of yoga growth.
+            </p>
+          </div>
+          <div className="col-md-1 lower-icon">
+            <FontAwesomeIcon icon={faDharmachakra} />
+          </div>
+          <div className="col-md-3 lower-content-columns">
+            <h4>Variety</h4>
+            <p className="lower-content-para">
+              We offer a wide range of classes to satisfy different interests,
+              goals and moods.
+            </p>
+          </div>
+          <div className="col-md-1 lower-icon">
+            <FontAwesomeIcon icon={faVihara} />
+          </div>
+          <div className="col-md-3 lower-content-columns">
+            <h4>Space</h4>
+            <p className="lower-content-para">
+              Yoga studio is dedicated to cultivating a peaceful and welcoming
+              space for students to explore and grow.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

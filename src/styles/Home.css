@@ -183,11 +183,49 @@
   }
 }
 
-h4 {
+.home-h4-text {
   margin-left: 50px;
   margin-right: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
+  text-align: justify;
+}
+
+@media (max-width: 400px) {
+  .home-h4-text {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.home-lower-content {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.lower-content-title {
+  margin-bottom: 30px;
+}
+
+.lower-content-columns {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.lower-content-para {
+  text-align: justify;
+  font-size: 18px;
+}
+
+.lower-icon {
+  color: #74999f;
+  font-size: 40px;
+  padding-top: 20px;
 }
 
 h1 {
