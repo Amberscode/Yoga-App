@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
+  // todo: change this
+  // goal of function is to navigate to login
+
   const [registerFormValue, setRegisterFormValue] = useState({
     firstName: "",
     lastName: "",
@@ -30,18 +34,29 @@ const SignUp = () => {
     };
 
     try {
-      let responseFromServer = await axios.post(
+      // send user data to backend
+      let returnedDataFromBackend = await axios.post(
         "http://localhost:80/user/create",
         newUserData
       );
-      console.log(responseFromServer.data);
-      setRegisterFormValue({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        reenterPassword: "",
-      });
+
+      if (returnedDataFromBackend.data.success === true) {
+        // clear form
+        setRegisterFormValue({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          reenterPassword: "",
+        });
+
+        // replace this with react router
+        window.location = "/login";
+        // want to send user to login page
+      } else {
+        // something went wrong on backend
+        alert("something went wrong");
+      }
     } catch (e) {
       console.log(e, "something went wrong");
     }

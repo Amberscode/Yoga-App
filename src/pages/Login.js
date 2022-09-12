@@ -18,10 +18,47 @@ const Login = () => {
     setPasswordValue(event.target.value);
   };
 
-  const handleSubmitLogin = (event) => {
+  const handleSubmitLogin = async (event) => {
     event.preventDefault();
-    const userData = {};
-    console.log("login");
+    const userLoginData = { email: emailValue, password: passwordValue };
+
+    try {
+      // send user data to backend
+      let loginDataFromBackend = await axios.post(
+        "http://localhost:80/user/login",
+        userLoginData
+      );
+
+      if (loginDataFromBackend.data.success === true) {
+        // clear form
+        // store token in localstorage
+        // store expiry in localstorage
+        // store name in localstorage
+        window.localStorage.setItem(
+          "token",
+          loginDataFromBackend.data.auth.token
+        );
+        window.localStorage.setItem(
+          "expiry",
+          loginDataFromBackend.data.auth.expiry
+        );
+        window.localStorage.setItem(
+          "name",
+          loginDataFromBackend.data.firstName
+        );
+
+        // let token = window.localStorage.getItem("token")
+        // if(token.length > 0) return true
+
+        setEmailValue("");
+        setPasswordValue("");
+      } else {
+        // something went wrong on backend
+        alert("something went wrong");
+      }
+    } catch (e) {
+      console.log(e, "something went wrong");
+    }
   };
 
   return (

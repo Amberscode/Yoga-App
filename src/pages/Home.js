@@ -31,9 +31,9 @@ const Home = (props) => {
       </h4>
       <h4 className="home-h4-text">
         A one of a kind environment, Yoga studio is the epicenter of renewal,
-        healing and self-discovery in Marina Vallarta. Classes are held daily at
-        7:00 a.m., 10:00 a.m., 2:00 p.m. and 6:30 p.m. Visit our schedule page
-        to select the class that is best for you.
+        healing and self-discovery in Marina Vallarta. Morning, afternoon and
+        evening classes held daily. Visit our schedule page to select the class
+        that is best for you.
       </h4>
       <section className="parallax-1">
         <div className="parallax-inner">
