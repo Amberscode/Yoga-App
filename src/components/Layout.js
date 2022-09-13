@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import classes from "./Layout.module.css";
+import classes from "../styles/Layout.module.css";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 

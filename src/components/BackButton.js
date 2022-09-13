@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import "./BackButton.css";
+import "../styles/BackButton.css";
 
 const BackButton = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="btn-div">
+    <div className="back-btn-div">
       <button className="btn back-btn" onClick={() => navigate(-1)}>
         Back
       </button>

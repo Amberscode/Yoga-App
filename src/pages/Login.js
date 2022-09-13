@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../store/auth-context";
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  // const emailInput = emailValue;
+
+  const authCtx = useContext(AuthContext);
 
   const handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -34,20 +36,21 @@ const Login = () => {
         // store token in localstorage
         // store expiry in localstorage
         // store name in localstorage
-        window.localStorage.setItem(
-          "token",
-          loginDataFromBackend.data.auth.token
-        );
-        window.localStorage.setItem(
-          "expiry",
-          loginDataFromBackend.data.auth.expiry
-        );
-        window.localStorage.setItem(
-          "name",
-          loginDataFromBackend.data.firstName
-        );
+        // window.localStorage.setItem(
+        //   "token",
+        //   loginDataFromBackend.data.auth.token
+        // );
+        // window.localStorage.setItem(
+        //   "expiry",
+        //   loginDataFromBackend.data.auth.expiry
+        // );
+        // window.localStorage.setItem(
+        //   "name",
+        //   loginDataFromBackend.data.firstName
+        // );
 
-        // let token = window.localStorage.getItem("token")
+        let userToken = loginDataFromBackend.data.auth.token;
+        authCtx.login(userToken);
         // if(token.length > 0) return true
 
         setEmailValue("");

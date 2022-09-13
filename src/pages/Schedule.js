@@ -1,4 +1,9 @@
+// import { useContext } from "react";
+// import AuthContext from "../store/auth-context";
+
 const Schedule = () => {
+  // const authCtx = useContext(AuthContext);
+
   return (
     <div>
       <h1>Class Schedule</h1>;

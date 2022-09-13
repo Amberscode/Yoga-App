@@ -9,10 +9,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 // overwrite css
 import "./styles/global.css";
 import App from "./App";
+import { AuthContextProvider } from "./store/auth-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <AuthContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthContextProvider>
 );
