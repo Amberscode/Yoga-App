@@ -1,8 +1,9 @@
-// import { useContext } from "react";
-// import AuthContext from "../store/auth-context";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
 
 const Schedule = () => {
-  // const authCtx = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
+  const loggedIn = authCtx.isLoggedIn;
 
   return (
     <div>

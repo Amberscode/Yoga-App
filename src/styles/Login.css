@@ -126,3 +126,8 @@
 .signUp-btn:active {
   box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
 }
+
+.error-text {
+  color: rgb(184, 15, 40);
+  text-align: center;
+}

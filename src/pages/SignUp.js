@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
@@ -17,6 +17,12 @@ const SignUp = () => {
     reenterPassword: "",
   });
 
+  const [firstNameIsValid, setFirstNameIsValid] = useState(true);
+  const [lastNameIsValid, setLastNameIsValid] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [reenterPasswordIsValid, setReenterPasswordIsValid] = useState(true);
+
   const handleRegisterFormChange = (event) => {
     setRegisterFormValue({
       ...registerFormValue,
@@ -26,6 +32,53 @@ const SignUp = () => {
 
   const handleSubmitSignUp = async (event) => {
     event.preventDefault();
+
+    if (registerFormValue.firstName.trim() === "") {
+      setFirstNameIsValid(false);
+      return;
+    } else {
+      setFirstNameIsValid(true);
+    }
+
+    if (registerFormValue.lastName.trim() === "") {
+      setLastNameIsValid(false);
+      return;
+    } else {
+      setLastNameIsValid(true);
+    }
+
+    if (registerFormValue.email.trim() === "") {
+      setEmailIsValid(false);
+      return;
+    } else {
+      setEmailIsValid(true);
+    }
+
+    if (
+      !registerFormValue.email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setEmailIsValid(false);
+      return;
+    } else {
+      setEmailIsValid(true);
+    }
+
+    if (registerFormValue.password.length < 6) {
+      setPasswordIsValid(false);
+      return;
+    } else {
+      setPasswordIsValid(true);
+    }
+
+    if (registerFormValue.password != registerFormValue.reenterPassword) {
+      setReenterPasswordIsValid(false);
+      return;
+    } else {
+      setReenterPasswordIsValid(true);
+    }
+
     const newUserData = {
       firstName: registerFormValue.firstName,
       lastName: registerFormValue.lastName,
@@ -55,7 +108,11 @@ const SignUp = () => {
         // want to send user to login page
       } else {
         // something went wrong on backend
-        alert("something went wrong");
+        if (returnedDataFromBackend.data.message) {
+          alert(returnedDataFromBackend.data.message);
+        } else {
+          alert("something went wrong");
+        }
       }
     } catch (e) {
       console.log(e, "something went wrong");
@@ -84,6 +141,9 @@ const SignUp = () => {
                 aria-describedby="firstName"
                 // placeholder="Enter your first name"
               />
+              {!firstNameIsValid && (
+                <p className="error-text">Please enter your name</p>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="LastName">Last Name</label>
@@ -97,6 +157,9 @@ const SignUp = () => {
                 aria-describedby="LastName"
                 // placeholder="Enter your last name"
               />
+              {!lastNameIsValid && (
+                <p className="error-text">Please enter your last name</p>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -110,9 +173,13 @@ const SignUp = () => {
                 aria-describedby="email"
                 // placeholder="Enter your email"
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
+              {!emailIsValid ? (
+                <p className="error-text">Please enter a valid email address</p>
+              ) : (
+                <small id="emailHelp" className="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="passwordInput">Create a Password</label>
@@ -124,9 +191,18 @@ const SignUp = () => {
                 value={registerFormValue.password}
                 onChange={handleRegisterFormChange}
               />
-              <small id="passwordRequirements" className="form-text text-muted">
-                Must be at least 6 characters long.
-              </small>
+              {!passwordIsValid ? (
+                <p className="error-text">
+                  Password must be at least 6 characters long
+                </p>
+              ) : (
+                <small
+                  id="passwordRequirements"
+                  className="form-text text-muted"
+                >
+                  Must be at least 6 characters long.
+                </small>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="reenterPasswordInput">
@@ -140,6 +216,9 @@ const SignUp = () => {
                 value={registerFormValue.reenterPassword}
                 onChange={handleRegisterFormChange}
               />
+              {!reenterPasswordIsValid && (
+                <p className="error-text">Passwords do not match</p>
+              )}
             </div>
             <button type="submit" className="btn login-btn">
               Register

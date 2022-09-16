@@ -9,6 +9,8 @@ import AuthContext from "../store/auth-context";
 const Login = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const authCtx = useContext(AuthContext);
 
@@ -22,6 +24,32 @@ const Login = () => {
 
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
+
+    if (emailValue.trim() === "") {
+      setEmailIsValid(false);
+      return;
+    } else {
+      setEmailIsValid(true);
+    }
+
+    if (
+      !emailValue.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setEmailIsValid(false);
+      return;
+    } else {
+      setEmailIsValid(true);
+    }
+
+    if (passwordValue.length < 6) {
+      setPasswordIsValid(false);
+      return;
+    } else {
+      setPasswordIsValid(true);
+    }
+
     const userLoginData = { email: emailValue, password: passwordValue };
 
     try {
@@ -85,9 +113,13 @@ const Login = () => {
                 aria-describedby="email"
                 // placeholder="Enter your email"
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
+              {!emailIsValid ? (
+                <p className="error-text">Please enter a valid email address</p>
+              ) : (
+                <small id="emailHelp" className="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="passwordInput">Password</label>
@@ -98,6 +130,18 @@ const Login = () => {
                 value={passwordValue}
                 onChange={handlePasswordChange}
               />
+              {!passwordIsValid ? (
+                <p className="error-text">
+                  Password must be at least 6 characters long
+                </p>
+              ) : (
+                <small
+                  id="passwordRequirements"
+                  className="form-text text-muted"
+                >
+                  Must be at least 6 characters long.
+                </small>
+              )}
             </div>
             <button type="submit" className="btn login-btn">
               Sign In
