@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../styles/Login.css";
+import "../styles/YourClasses.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../store/auth-context";
@@ -13,20 +13,30 @@ const YourClasses = () => {
   };
 
   return (
-    <div className="login-page container-fluid">
+    <div className="yourclasses-page container-fluid">
       <div className="row">
-        <div className="col-xl-7 col-lg-6  login-design order-2 order-lg-1">
-          <FontAwesomeIcon icon={faSpa} className="yoga-icon" />
-          <p className="yoga-logo-text">Yoga Studio</p>
+        <p className="user-logged-in-welcome">Welcome, {authCtx.userName}</p>
+      </div>
+      <div className="row">
+        <div className="col-md-5  yourclasses-design order-2 order-md-1">
+          <FontAwesomeIcon icon={faSpa} className="yoga-icon-yourclasses" />
+          <p className="yoga-logo-text-yourclasses">Yoga Studio</p>
         </div>
-        <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
-          <p className="user-logged-in-welcome">Welcome, {authCtx.userName}</p>
-          <button
-            className="btn btn-outline-success changeUser-btn"
+        <div className="col-md-7 login-content order-1 order-md-2">
+          <p className="yourclasses-text">You have no upcoming classes</p>
+          <Link
+            className="btn btn-outline-success yourclasses-btn"
+            to="/login"
             onClick={logoutHandler}
           >
             Change User
-          </button>
+          </Link>
+          <Link
+            className="btn btn-outline-success yourclasses-btn"
+            to="/schedule"
+          >
+            Register for Classes
+          </Link>
         </div>
       </div>
     </div>

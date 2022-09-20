@@ -63,6 +63,17 @@ const NavBar = () => {
                 Contact
               </Link>
             </li>
+            {isLoggedIn && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/yourclasses"
+                  onClick={() => setShow(false)}
+                >
+                  Your Classes
+                </Link>
+              </li>
+            )}
           </ul>
           {!isLoggedIn && (
             <li className="d-flex">
