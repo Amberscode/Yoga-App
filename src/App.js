@@ -12,6 +12,7 @@ import Yin from "./pages/Yin";
 import Aerial from "./pages/Aerial";
 import Acro from "./pages/Acro";
 import Power from "./pages/Power";
+import YourClasses from "./pages/YourClasses";
 import ScrollToTop from "./ScrollToTop";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="aerial" element={<Aerial />} />
         <Route path="acro" element={<Acro />} />
         <Route path="power" element={<Power />} />
+        <Route path="yourclasses" element={<YourClasses />} />
       </Routes>
     </Layout>
   );

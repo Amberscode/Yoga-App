@@ -131,3 +131,21 @@
   color: rgb(184, 15, 40);
   text-align: center;
 }
+
+.user-logged-in-welcome {
+  color: white;
+  font-size: 40px;
+  margin-top: 30%;
+  text-align: center;
+}
+
+.changeUser-btn {
+  margin-right: 30%;
+  margin-bottom: 2rem;
+  margin-top: 20%;
+  float: right;
+}
+
+.changeUser-btn:active {
+  box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
+}

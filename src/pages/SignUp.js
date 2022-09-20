@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import axios from "axios";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../store/auth-context";
 
 const SignUp = () => {
   // todo: change this
   // goal of function is to navigate to login
+
+  const authCtx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
 
   const [registerFormValue, setRegisterFormValue] = useState({
     firstName: "",
@@ -126,105 +132,121 @@ const SignUp = () => {
           <FontAwesomeIcon icon={faSpa} className="yoga-icon" />
           <p className="yoga-logo-text">Yoga Studio</p>
         </div>
-        <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
-          <form className="login-form" onSubmit={handleSubmitSignUp}>
-            <h1>Create your account</h1>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                className="form-control"
-                id="firstName"
-                value={registerFormValue.firstName}
-                onChange={handleRegisterFormChange}
-                aria-describedby="firstName"
-                // placeholder="Enter your first name"
-              />
-              {!firstNameIsValid && (
-                <p className="error-text">Please enter your name</p>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="LastName">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                className="form-control"
-                id="lastName"
-                value={registerFormValue.lastName}
-                onChange={handleRegisterFormChange}
-                aria-describedby="LastName"
-                // placeholder="Enter your last name"
-              />
-              {!lastNameIsValid && (
-                <p className="error-text">Please enter your last name</p>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                id="email"
-                value={registerFormValue.email}
-                onChange={handleRegisterFormChange}
-                aria-describedby="email"
-                // placeholder="Enter your email"
-              />
-              {!emailIsValid ? (
-                <p className="error-text">Please enter a valid email address</p>
-              ) : (
-                <small id="emailHelp" className="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordInput">Create a Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                id="passwordInput"
-                value={registerFormValue.password}
-                onChange={handleRegisterFormChange}
-              />
-              {!passwordIsValid ? (
-                <p className="error-text">
-                  Password must be at least 6 characters long
-                </p>
-              ) : (
-                <small
-                  id="passwordRequirements"
-                  className="form-text text-muted"
-                >
-                  Must be at least 6 characters long.
-                </small>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="reenterPasswordInput">
-                Re-enter Your Password
-              </label>
-              <input
-                type="password"
-                name="reenterPassword"
-                className="form-control"
-                id="reenterPasswordInput"
-                value={registerFormValue.reenterPassword}
-                onChange={handleRegisterFormChange}
-              />
-              {!reenterPasswordIsValid && (
-                <p className="error-text">Passwords do not match</p>
-              )}
-            </div>
-            <button type="submit" className="btn login-btn">
-              Register
+        {!authCtx.isLoggedIn ? (
+          <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
+            <form className="login-form" onSubmit={handleSubmitSignUp}>
+              <h1>Create your account</h1>
+              <div className="form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  className="form-control"
+                  id="firstName"
+                  value={registerFormValue.firstName}
+                  onChange={handleRegisterFormChange}
+                  aria-describedby="firstName"
+                  // placeholder="Enter your first name"
+                />
+                {!firstNameIsValid && (
+                  <p className="error-text">Please enter your name</p>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="LastName">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  className="form-control"
+                  id="lastName"
+                  value={registerFormValue.lastName}
+                  onChange={handleRegisterFormChange}
+                  aria-describedby="LastName"
+                  // placeholder="Enter your last name"
+                />
+                {!lastNameIsValid && (
+                  <p className="error-text">Please enter your last name</p>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  id="email"
+                  value={registerFormValue.email}
+                  onChange={handleRegisterFormChange}
+                  aria-describedby="email"
+                  // placeholder="Enter your email"
+                />
+                {!emailIsValid ? (
+                  <p className="error-text">
+                    Please enter a valid email address
+                  </p>
+                ) : (
+                  <small id="emailHelp" className="form-text text-muted">
+                    We'll never share your email with anyone else.
+                  </small>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="passwordInput">Create a Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  id="passwordInput"
+                  value={registerFormValue.password}
+                  onChange={handleRegisterFormChange}
+                />
+                {!passwordIsValid ? (
+                  <p className="error-text">
+                    Password must be at least 6 characters long
+                  </p>
+                ) : (
+                  <small
+                    id="passwordRequirements"
+                    className="form-text text-muted"
+                  >
+                    Must be at least 6 characters long.
+                  </small>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="reenterPasswordInput">
+                  Re-enter Your Password
+                </label>
+                <input
+                  type="password"
+                  name="reenterPassword"
+                  className="form-control"
+                  id="reenterPasswordInput"
+                  value={registerFormValue.reenterPassword}
+                  onChange={handleRegisterFormChange}
+                />
+                {!reenterPasswordIsValid && (
+                  <p className="error-text">Passwords do not match</p>
+                )}
+              </div>
+              <button type="submit" className="btn login-btn">
+                Register
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
+            <p className="user-logged-in-welcome">
+              Welcome, {authCtx.userName}
+            </p>
+            <button
+              className="btn btn-outline-success changeUser-btn"
+              onClick={logoutHandler}
+            >
+              Change User
             </button>
-          </form>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

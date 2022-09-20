@@ -22,6 +22,10 @@ const Login = () => {
     setPasswordValue(event.target.value);
   };
 
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
+
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
 
@@ -77,8 +81,9 @@ const Login = () => {
         //   loginDataFromBackend.data.firstName
         // );
 
+        let userName = loginDataFromBackend.data.firstName;
         let userToken = loginDataFromBackend.data.auth.token;
-        authCtx.login(userToken);
+        authCtx.login(userToken, userName);
         // if(token.length > 0) return true
 
         setEmailValue("");
@@ -99,61 +104,78 @@ const Login = () => {
           <FontAwesomeIcon icon={faSpa} className="yoga-icon" />
           <p className="yoga-logo-text">Yoga Studio</p>
         </div>
-        <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
-          <form className="login-form" onSubmit={handleSubmitLogin}>
-            <h1>Login to your account</h1>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                value={emailValue}
-                onChange={handleEmailChange}
-                aria-describedby="email"
-                // placeholder="Enter your email"
-              />
-              {!emailIsValid ? (
-                <p className="error-text">Please enter a valid email address</p>
-              ) : (
-                <small id="emailHelp" className="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordInput">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="passwordInput"
-                value={passwordValue}
-                onChange={handlePasswordChange}
-              />
-              {!passwordIsValid ? (
-                <p className="error-text">
-                  Password must be at least 6 characters long
-                </p>
-              ) : (
-                <small
-                  id="passwordRequirements"
-                  className="form-text text-muted"
-                >
-                  Must be at least 6 characters long.
-                </small>
-              )}
-            </div>
-            <button type="submit" className="btn login-btn">
-              Sign In
+        {!authCtx.isLoggedIn ? (
+          <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
+            <form className="login-form" onSubmit={handleSubmitLogin}>
+              <h1>Login to your account</h1>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  value={emailValue}
+                  onChange={handleEmailChange}
+                  aria-describedby="email"
+                  // placeholder="Enter your email"
+                />
+                {!emailIsValid ? (
+                  <p className="error-text">
+                    Please enter a valid email address
+                  </p>
+                ) : (
+                  <small id="emailHelp" className="form-text text-muted">
+                    We'll never share your email with anyone else.
+                  </small>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="passwordInput">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="passwordInput"
+                  value={passwordValue}
+                  onChange={handlePasswordChange}
+                />
+                {!passwordIsValid ? (
+                  <p className="error-text">
+                    Password must be at least 6 characters long
+                  </p>
+                ) : (
+                  <small
+                    id="passwordRequirements"
+                    className="form-text text-muted"
+                  >
+                    Must be at least 6 characters long.
+                  </small>
+                )}
+              </div>
+              <button type="submit" className="btn login-btn">
+                Sign In
+              </button>
+            </form>
+
+            <p className="sign-up-text">
+              New to the studio? Click below to sign up!
+            </p>
+            <Link className="btn btn-outline-success signUp-btn" to="/signup">
+              Register
+            </Link>
+          </div>
+        ) : (
+          <div className="col-xl-5 col-lg-6 login-content order-1 order-lg-2">
+            <p className="user-logged-in-welcome">
+              Welcome, {authCtx.userName}
+            </p>
+            <button
+              className="btn btn-outline-success changeUser-btn"
+              onClick={logoutHandler}
+            >
+              Change User
             </button>
-          </form>
-          <p className="sign-up-text">
-            New to the studio? Click below to sign up!
-          </p>
-          <Link className="btn btn-outline-success signUp-btn" to="/signup">
-            Register
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
