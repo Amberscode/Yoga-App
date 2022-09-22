@@ -1,4 +1,5 @@
-import { Route, Routes, Redirect } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useContext } from "react";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
@@ -14,15 +15,18 @@ import Acro from "./pages/Acro";
 import Power from "./pages/Power";
 import YourClasses from "./pages/YourClasses";
 import ScrollToTop from "./ScrollToTop";
+import AuthContext from "./store/auth-context";
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Layout>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<SignUp />} />
+        {!authCtx.isLoggedIn && <Route path="login" element={<Login />} />}
+        {!authCtx.isLoggedIn && <Route path="signup" element={<SignUp />} />}
         <Route path="about" element={<About />} />
         <Route path="schedule" element={<Schedule />} />
         <Route path="contact" element={<Contact />} />
@@ -32,7 +36,10 @@ function App() {
         <Route path="aerial" element={<Aerial />} />
         <Route path="acro" element={<Acro />} />
         <Route path="power" element={<Power />} />
-        <Route path="yourclasses" element={<YourClasses />} />
+        {authCtx.isLoggedIn && (
+          <Route path="yourclasses" element={<YourClasses />} />
+        )}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>
   );
