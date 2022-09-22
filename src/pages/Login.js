@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,8 @@ const Login = () => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const authCtx = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -88,6 +90,7 @@ const Login = () => {
 
         setEmailValue("");
         setPasswordValue("");
+        navigate("/yourclasses");
       } else {
         // something went wrong on backend
         alert("something went wrong");
