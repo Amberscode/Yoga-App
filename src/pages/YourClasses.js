@@ -15,29 +15,46 @@ const YourClasses = () => {
   return (
     <div className="yourclasses-page container-fluid">
       <div className="row">
-        <p className="user-logged-in-welcome">Welcome, {authCtx.userName}</p>
-      </div>
-      <div className="row">
-        <div className="col-md-5  yourclasses-design order-2 order-md-1">
+        <div className="col-lg-5  yourclasses-design order-2 order-lg-1">
           <FontAwesomeIcon icon={faSpa} className="yoga-icon-yourclasses" />
           <p className="yoga-logo-text-yourclasses">Yoga Studio</p>
         </div>
-        <div className="col-md-7 login-content order-1 order-md-2">
-          <p className="yourclasses-text">You have no upcoming classes</p>
-          <Link
-            className="btn btn-outline-success yourclasses-btn"
-            to="/login"
-            onClick={logoutHandler}
-          >
-            Change User
-          </Link>
-          <Link
-            className="btn btn-outline-success yourclasses-btn"
-            to="/schedule"
-          >
-            Register for Classes
-          </Link>
-        </div>
+        {authCtx.isLoggedIn ? (
+          <div className="col-lg-7 order-1 order-lg-2">
+            <p className="user-logged-in-welcome">
+              Welcome, {authCtx.userName}
+            </p>
+            <p className="yourclasses-text">You have no upcoming classes.</p>
+            <div className="container text-center">
+              <Link
+                className="btn btn-outline-success yourclasses-btn"
+                to="/login"
+                onClick={logoutHandler}
+              >
+                Change User
+              </Link>
+              <Link
+                className="btn btn-outline-success yourclasses-btn"
+                to="/schedule"
+              >
+                Register for Classes
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="col-lg-5  yourclasses-design order-2 order-lg-1">
+            <p className="yourclasses-text">
+              Please login to view your booked classes
+            </p>
+            <Link
+              className="btn btn-outline-success yourclasses-btn"
+              to="/login"
+              onClick={logoutHandler}
+            >
+              Login
+            </Link>{" "}
+          </div>
+        )}
       </div>
     </div>
   );

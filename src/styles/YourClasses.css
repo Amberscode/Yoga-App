@@ -32,7 +32,7 @@
 .user-logged-in-welcome {
   color: white;
   font-size: 40px;
-  margin-top: 2%;
+  margin-top: 10%;
   text-align: center;
 }
 
@@ -40,15 +40,17 @@
   color: white;
   font-size: 20px;
   margin-top: 10%;
+  text-align: center;
 }
 
-.changeUser-btn {
-  margin-right: 30%;
+.yourclasses-btn {
   margin-bottom: 2rem;
   margin-top: 20%;
-  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 180px;
 }
 
-.changeUser-btn:active {
+.yourclasses-btn:active {
   box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
 }
