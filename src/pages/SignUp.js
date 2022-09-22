@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ const SignUp = () => {
   // goal of function is to navigate to login
 
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     authCtx.logout();
@@ -78,7 +80,7 @@ const SignUp = () => {
       setPasswordIsValid(true);
     }
 
-    if (registerFormValue.password != registerFormValue.reenterPassword) {
+    if (registerFormValue.password !== registerFormValue.reenterPassword) {
       setReenterPasswordIsValid(false);
       return;
     } else {
@@ -110,7 +112,7 @@ const SignUp = () => {
         });
 
         // replace this with react router
-        window.location = "/login";
+        navigate("/login");
         // want to send user to login page
       } else {
         // something went wrong on backend
