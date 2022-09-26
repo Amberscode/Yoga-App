@@ -7,9 +7,6 @@ import { faSpa } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../store/auth-context";
 
 const SignUp = () => {
-  // todo: change this
-  // goal of function is to navigate to login
-
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -111,7 +108,6 @@ const SignUp = () => {
           reenterPassword: "",
         });
 
-        // replace this with react router
         navigate("/login");
         // want to send user to login page
       } else {

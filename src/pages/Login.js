@@ -85,7 +85,10 @@ const Login = () => {
 
         let userName = loginDataFromBackend.data.firstName;
         let userToken = loginDataFromBackend.data.auth.token;
-        authCtx.login(userToken, userName);
+        let expiry = loginDataFromBackend.data.auth.expiry;
+        let isAdmin = loginDataFromBackend.data.isAdmin;
+
+        authCtx.login(userToken, userName, expiry, isAdmin);
         // if(token.length > 0) return true
 
         setEmailValue("");

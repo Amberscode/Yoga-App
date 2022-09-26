@@ -1,0 +1,81 @@
+.add-class-page {
+  text-align: left;
+  vertical-align: middle;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  background-color: #74999f;
+  min-height: 100vh;
+}
+
+.add-class-form {
+  padding: 4rem;
+  background-color: white;
+  border-radius: 5px;
+  margin: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  align-items: left;
+}
+
+@media (max-width: 991px) {
+  .add-class-form {
+    padding: 3rem;
+    margin: 8rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 787px) {
+  .add-class-form {
+    padding: 2rem;
+    margin: 5rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 535px) {
+  .add-class-form {
+    padding: 2rem;
+    margin: 1rem;
+    align-items: center;
+  }
+}
+
+.form-group {
+  margin-top: 1rem;
+}
+
+.add-btn {
+  color: #f5f5f5;
+  background-color: #74999f;
+  border: none;
+  margin-top: 1rem;
+}
+
+.form-control {
+  color: #5e6b80;
+}
+
+.form-control:focus {
+  color: #5e6b80;
+  border-color: lightgrey;
+  box-shadow: 0 0 5px rgba(94, 107, 128, 0.7);
+}
+
+.add-btn:hover,
+.add-btn:active {
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
+.add-btn:focus {
+  box-shadow: 0 0 8px rgba(94, 107, 128, 0.7) !important;
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
+.error-text {
+  color: rgb(184, 15, 40);
+  text-align: center;
+}

@@ -14,6 +14,7 @@ import Aerial from "./pages/Aerial";
 import Acro from "./pages/Acro";
 import Power from "./pages/Power";
 import YourClasses from "./pages/YourClasses";
+import AddClass from "./pages/AddClass";
 import ScrollToTop from "./ScrollToTop";
 import AuthContext from "./store/auth-context";
 
@@ -39,6 +40,7 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path="yourclasses" element={<YourClasses />} />
         )}
+        {authCtx.isLoggedIn && <Route path="addclass" element={<AddClass />} />}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>

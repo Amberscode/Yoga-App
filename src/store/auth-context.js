@@ -1,37 +1,55 @@
 import React, { useState } from "react";
+import moment from "moment";
 
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
   userName: "",
-  login: (token, firstName) => {},
+  isAdmin: false,
+  login: (token, firstName, expiry) => {},
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
+  const removeToken = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("expiry");
+  };
+
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
+
   const savedName = localStorage.getItem("userName");
   const [userName, setUserName] = useState("");
-  const userIsLoggedIn = !!token;
 
-  const logInHandler = (token, firstName) => {
-    setUserName(firstName);
-    setToken(token);
-    localStorage.setItem("token", token);
-    localStorage.setItem("userName", firstName);
-  };
+  const [userIsAdmin, setUserIsAdmin] = useState("false");
+
+  const expiry = localStorage.getItem("expiry");
+  const currentTime = moment().valueOf();
+  if (currentTime > expiry) removeToken();
+
+  const userIsLoggedIn = !!token;
 
   const logOutHandler = () => {
     setToken(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("userName");
+    removeToken();
+  };
+
+  const logInHandler = (token, firstName, expiry, isAdmin) => {
+    setUserName(firstName);
+    setToken(token);
+    setUserIsAdmin(isAdmin);
+    localStorage.setItem("expiry", expiry);
+    localStorage.setItem("token", token);
+    localStorage.setItem("userName", firstName);
   };
 
   const contextValue = {
     token: token,
     userName: savedName,
     isLoggedIn: userIsLoggedIn,
+    isAdmin: userIsAdmin,
     login: logInHandler,
     logout: logOutHandler,
   };
