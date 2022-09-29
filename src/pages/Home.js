@@ -1,7 +1,6 @@
 import PriceGrid from "../components/PriceGrid";
 import StylesGrid from "../components/StylesGrid";
 import "../styles/Home.css";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faVihara,

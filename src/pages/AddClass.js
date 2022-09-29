@@ -1,13 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "../styles/AddClass.css";
-import AuthContext from "../store/auth-context";
 
 const AddClass = () => {
-  const authCtx = useContext(AuthContext);
-
   const [classFormValue, setClassFormValue] = useState({
     classType: "",
+    classDate: "",
     classTime: "",
     classTeacher: "",
     classCapacity: "",
@@ -15,6 +13,7 @@ const AddClass = () => {
   });
 
   const [classTypeIsValid, setClassTypeIsValid] = useState(true);
+  const [classDateIsValid, setClassDateIsValid] = useState(true);
   const [classTimeIsValid, setClassTimeIsValid] = useState(true);
   const [classTeacherIsValid, setClassTeacherIsValid] = useState(true);
   const [classCapacityIsValid, setClassCapacityIsValid] = useState(true);
@@ -35,6 +34,13 @@ const AddClass = () => {
       return;
     } else {
       setClassTypeIsValid(true);
+    }
+
+    if (classFormValue.classDate.trim() === "") {
+      setClassDateIsValid(false);
+      return;
+    } else {
+      setClassDateIsValid(true);
     }
 
     if (classFormValue.classTime.trim() === "") {
@@ -67,11 +73,13 @@ const AddClass = () => {
 
     const newClassData = {
       type: classFormValue.classType,
+      date: classFormValue.classDate,
       time: classFormValue.classTime,
       teacher: classFormValue.classTeacher,
       capacity: classFormValue.classCapacity,
-      dureation: classFormValue.classDuration,
+      duration: classFormValue.classDuration,
     };
+    console.log(newClassData);
 
     try {
       // send user data to backend
@@ -84,6 +92,7 @@ const AddClass = () => {
         // clear form
         setClassFormValue({
           classType: "",
+          classDate: "",
           classTime: "",
           classTeacher: "",
           classCapacity: "",
@@ -108,23 +117,48 @@ const AddClass = () => {
         <h1>Add New Class</h1>
         <div className="form-group">
           <label htmlFor="classType">Class Type</label>
-          <input
-            type="text"
+          <select
             name="classType"
-            className="form-control"
+            className="form-select"
             id="classType"
             value={classFormValue.classType}
             onChange={handleClassFormChange}
             aria-describedby="classType"
-          />
+          >
+            <option value="">--please choose a class type--</option>
+            <option value="acro">Acro Yoga</option>
+            <option value="aerial">Aerial Yoga</option>
+            <option value="hatha">Hatha Yoga</option>
+            <option value="power">Power Yoga</option>
+            <option value="vinyasa">Vinyasa Yoga</option>
+            <option value="yin">Yin Yoga</option>
+          </select>
           {!classTypeIsValid && (
-            <p className="error-text">Please enter a class type</p>
+            <p className="error-text">Please select a class type</p>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="classDate">Date</label>
+          <input
+            type="date"
+            name="classDate"
+            className="form-control"
+            id="classDate"
+            value={classFormValue.classDate}
+            onChange={handleClassFormChange}
+            aria-describedby="classDate"
+          />
+          {!classDateIsValid && (
+            <p className="error-text">Please enter a date</p>
           )}
         </div>
         <div className="form-group">
           <label htmlFor="classTime">Start Time</label>
           <input
-            type="text"
+            type="time"
+            min="05:30"
+            max="22:00"
+            step="900"
             name="classTime"
             className="form-control"
             id="classTime"
@@ -154,7 +188,9 @@ const AddClass = () => {
         <div className="form-group">
           <label htmlFor="classCapacity">Capacity</label>
           <input
-            type="text"
+            type="number"
+            min="5"
+            max="30"
             name="classCapacity"
             className="form-control"
             id="classCapacity"
@@ -167,18 +203,41 @@ const AddClass = () => {
         </div>
         <div className="form-group">
           <label htmlFor="classDuration">Duration</label>
-          <input
-            type="text"
-            name="classDuration"
-            className="form-control"
-            id="classDuration"
-            value={classFormValue.classDuration}
-            onChange={handleClassFormChange}
-          />
-          {!classDurationIsValid && (
-            <p className="error-text">Please enter a class duration</p>
-          )}
         </div>
+        <div className="form-group">
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input form-check-inline"
+              type="radio"
+              name="classDuration"
+              id="classDuration60"
+              value="60"
+              checked={classFormValue.classDuration === "60"}
+              onChange={handleClassFormChange}
+            />
+            <label className="form-check-label" htmlFor="classDuration60">
+              60 min
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="classDuration"
+              id="classDuration90"
+              value="90"
+              checked={classFormValue.classDuration === "90"}
+              onChange={handleClassFormChange}
+            />
+            <label className="form-check-label" htmlFor="classDuration90">
+              90 min
+            </label>
+            {!classDurationIsValid && (
+              <p className="error-text">Please enter a class duration</p>
+            )}
+          </div>
+        </div>
+
         <button type="submit" className="btn add-btn">
           Add Class
         </button>
