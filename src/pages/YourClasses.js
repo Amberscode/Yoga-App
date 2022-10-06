@@ -25,6 +25,18 @@ const YourClasses = () => {
               Welcome, {authCtx.userName}
             </p>
             <p className="yourclasses-text">You have no upcoming classes.</p>
+
+            {/* {props.yogaClasses.map((yogaClass) => (
+        <Class
+          classType={props.type}
+          classDate={props.date}
+          classTime={props.time}
+          classTeacher={props.teacher}
+          classCapacity={props.capacity}
+          classDuration={props.duration}
+          key={props.id}
+        />
+      ))} */}
             <div className="container text-center">
               <Link
                 className="btn btn-outline-success yourclasses-btn"

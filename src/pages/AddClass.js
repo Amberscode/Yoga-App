@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import moment from "moment";
 import "../styles/AddClass.css";
 
 const AddClass = () => {
@@ -73,7 +74,7 @@ const AddClass = () => {
 
     const newClassData = {
       type: classFormValue.classType,
-      date: classFormValue.classDate,
+      date: moment(classFormValue.classDate, "YYYY-MM-DD").toDate(),
       time: classFormValue.classTime,
       teacher: classFormValue.classTeacher,
       capacity: classFormValue.classCapacity,
@@ -89,6 +90,7 @@ const AddClass = () => {
       );
 
       if (returnedClassDataFromBackend.data.success === true) {
+        alert("class added");
         // clear form
         setClassFormValue({
           classType: "",
