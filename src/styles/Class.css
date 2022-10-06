@@ -1,8 +1,37 @@
-.yoga-class {
-  background-color: #f0d4d1;
+.class-item {
+  display: block;
+  text-align: justify;
+  justify-content: center;
+  font-size: larger;
+}
+
+.class-item-content {
+  display: inline-block;
+  text-align: center;
+}
+
+.class-type-info:hover {
+  color: #e0e0e0;
+}
+
+.register-btn {
+  color: #f5f5f5;
+  background-color: #74999f;
+  border: none;
+}
+
+.register-btn:hover,
+.register-btn:active {
+  background-color: #f2e5e3;
   color: #5e6b80;
 }
 
-.class-type {
-  text-align: center;
+.register-btn:focus {
+  box-shadow: 0 0 8px rgba(94, 107, 128, 0.7) !important;
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
+.not-signed-in-text {
+  color: #74999f;
 }

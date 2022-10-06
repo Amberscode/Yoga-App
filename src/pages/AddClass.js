@@ -128,12 +128,12 @@ const AddClass = () => {
             aria-describedby="classType"
           >
             <option value="">--please choose a class type--</option>
-            <option value="acro">Acro Yoga</option>
-            <option value="aerial">Aerial Yoga</option>
-            <option value="hatha">Hatha Yoga</option>
-            <option value="power">Power Yoga</option>
-            <option value="vinyasa">Vinyasa Yoga</option>
-            <option value="yin">Yin Yoga</option>
+            <option value="Acro">Acro Yoga</option>
+            <option value="Aerial">Aerial Yoga</option>
+            <option value="Hatha">Hatha Yoga</option>
+            <option value="Power">Power Yoga</option>
+            <option value="Vinyasa">Vinyasa Yoga</option>
+            <option value="Yin">Yin Yoga</option>
           </select>
           {!classTypeIsValid && (
             <p className="error-text">Please select a class type</p>
