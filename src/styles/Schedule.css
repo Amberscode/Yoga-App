@@ -42,6 +42,6 @@
 .yoga-class {
   background-color: white;
   color: #5e6b80;
-  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
   padding: 1rem;
 }

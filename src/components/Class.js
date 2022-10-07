@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../store/auth-context";
 import "../styles/Class.css";
 
@@ -14,15 +14,14 @@ const Class = (props) => {
 
   return (
     <div className="row class-item">
-      <p className="col-sm-3 class-item-content">{props.classTime}</p>
-      <p className=" col-sm-3 class-item-content">
-        <p className="class-item-content">{props.classType} Yoga </p>
-        <p
-          className="class-item-content class-type-info"
-          onClick={navigateToStylePage}
-        >
-          (Info)
-        </p>
+      <p className="col-sm-3 class-item-content class-time">
+        {props.classStartTime} - {props.classEndTime}
+      </p>
+      <p
+        className="col-sm-3 class-item-content class-type"
+        onClick={navigateToStylePage}
+      >
+        {props.classType} Yoga
       </p>
       <p className=" col-sm-3 class-item-content">{props.classTeacher}</p>
       <div className="col-sm-3 class-item-content">
@@ -30,7 +29,13 @@ const Class = (props) => {
         {loggedIn ? (
           <button className="btn register-btn">Register</button>
         ) : (
-          <p className="not-signed-in-text">Please sign in to register</p>
+          <p className="not-signed-in-text">
+            Please{" "}
+            <Link className="login-link" to="/login">
+              sign in
+            </Link>{" "}
+            to register
+          </p>
         )}
       </div>
     </div>
