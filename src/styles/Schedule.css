@@ -39,6 +39,15 @@
 .schedule-page-content {
   width: 100%;
 }
+
+.date-header {
+  text-align: left;
+  background-color: #e0e0e0;
+  padding-left: 45px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
 .yoga-class {
   background-color: white;
   color: #5e6b80;

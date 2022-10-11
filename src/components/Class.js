@@ -14,17 +14,17 @@ const Class = (props) => {
 
   return (
     <div className="row class-item">
-      <p className="col-sm-3 class-item-content class-time">
+      <p className="col-md-4 class-item-content class-time">
         {props.classStartTime} - {props.classEndTime}
       </p>
       <p
-        className="col-sm-3 class-item-content class-type"
+        className="col-md-3 class-item-content class-type"
         onClick={navigateToStylePage}
       >
         {props.classType} Yoga
       </p>
-      <p className=" col-sm-3 class-item-content">{props.classTeacher}</p>
-      <div className="col-sm-3 class-item-content">
+      <p className=" col-md-2 class-item-content">{props.classTeacher}</p>
+      <div className="col-md-3 class-item-content">
         {" "}
         {loggedIn ? (
           <button className="btn register-btn">Register</button>
