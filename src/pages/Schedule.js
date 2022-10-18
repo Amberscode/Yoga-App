@@ -10,6 +10,7 @@ const Schedule = () => {
   const [firstDay, setFirstDay] = useState(0);
   const [lastDay, setLastDay] = useState(7);
   let daysArray = [];
+  let dailyYogaClasses = [];
 
   const addDays = () => {
     setFirstDay(() => firstDay + 7);
@@ -22,9 +23,8 @@ const Schedule = () => {
   };
 
   for (let i = firstDay; i < lastDay; i++) {
-    daysArray.push(moment().add(i, "days").toDate());
+    daysArray.push(moment().add(i, "days").startOf("day").toDate()); // create native javascript object
   }
-  console.log(daysArray);
 
   async function callBackend() {
     let timestampToday = moment().startOf("day").unix();
@@ -34,7 +34,14 @@ const Schedule = () => {
       `http://localhost:80/classes?start=${timestampToday}&days=${end}`
     );
     if (request.data.success === true) {
-      console.log(new Date(request.data.classes[0].date));
+      console.log(new Date(request.data.classes[0].date)); // create also native javascript object
+
+      request.data.classes.map(function (obj) {
+        obj.dateObject = new Date(obj.date);
+      });
+
+      console.log(request.data.classes);
+
       setYogaClasses(request.data.classes);
     } else {
       console.log("something went wrong");
@@ -43,6 +50,24 @@ const Schedule = () => {
   useEffect(() => {
     callBackend();
   }, []);
+
+  yogaClasses.map((yogaClass) => {
+    for (let j = 0; j < 7; j++) {
+      if (yogaClass.dateObject.getTime() === daysArray[j].getTime()) {
+        if (dailyYogaClasses[j]) {
+          // push onto existing array
+          dailyYogaClasses[j].push(yogaClass);
+        } else {
+          // create an array and add yoga class
+          dailyYogaClasses[j] = [];
+          dailyYogaClasses[j].push(yogaClass);
+        }
+      }
+    }
+  });
+
+  console.log("classes");
+  console.log(dailyYogaClasses, "test");
 
   const convertTimeTo12Hr = (time) => {
     const timeArray = time.split(":");
@@ -81,32 +106,42 @@ const Schedule = () => {
         </div>
       </div>
       <div className="row schedule-page-content">
-        {yogaClasses.map((yogaClass) => (
-          <div className="yoga-class" key={yogaClass._id}>
-            <Class
-              classType={yogaClass.type}
-              classDate={yogaClass.date}
-              classStartTime={convertTimeTo12Hr(yogaClass.time)}
-              classEndTime={convertTimeTo12Hr(
-                calculateEndTime(yogaClass.time, yogaClass.duration)
-              )}
-              classTeacher={yogaClass.teacher}
-              classCapacity={yogaClass.capacity}
-              stylePage={`/${yogaClass.type}`}
-            />
+        {daysArray.map((day, index) => (
+          <div className="date-header" key={day}>
+            {day.toDateString()}
+            {dailyYogaClasses[index] &&
+              dailyYogaClasses[index].map((yogaClass) => (
+                <div className="yoga-class" key={yogaClass._id}>
+                  <Class
+                    classType={yogaClass.type}
+                    classDate={yogaClass.dateObject}
+                    classStartTime={convertTimeTo12Hr(yogaClass.time)}
+                    classEndTime={convertTimeTo12Hr(
+                      calculateEndTime(yogaClass.time, yogaClass.duration)
+                    )}
+                    classTeacher={yogaClass.teacher}
+                    classCapacity={yogaClass.capacity}
+                    stylePage={`/${yogaClass.type}`}
+                  />
+                </div>
+              ))}
           </div>
         ))}
-      </div>
-      <div>
         <div>
-          {daysArray.map((day) => (
-            <p className="date-header" key={day}>
-              {day.toDateString()}
-            </p>
-          ))}
+          {" "}
+          <button
+            className="btn btn-outline-success change-days-btn"
+            onClick={subtractDays}
+          >
+            Previous Week
+          </button>{" "}
+          <button
+            className="btn btn-outline-success change-days-btn"
+            onClick={addDays}
+          >
+            Next Week
+          </button>
         </div>
-        <button onClick={subtractDays}>Previous Week</button>{" "}
-        <button onClick={addDays}>Next Week</button>
       </div>
     </div>
   );

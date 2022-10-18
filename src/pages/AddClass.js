@@ -27,6 +27,18 @@ const AddClass = () => {
     });
   };
 
+  const clearForm = (event) => {
+    event.preventDefault();
+    setClassFormValue({
+      classType: "",
+      classDate: "",
+      classTime: "",
+      classTeacher: "",
+      classCapacity: "",
+      classDuration: "",
+    });
+  };
+
   const handleAddClass = async (event) => {
     event.preventDefault();
 
@@ -91,15 +103,6 @@ const AddClass = () => {
 
       if (returnedClassDataFromBackend.data.success === true) {
         alert("class added");
-        // clear form
-        setClassFormValue({
-          classType: "",
-          classDate: "",
-          classTime: "",
-          classTeacher: "",
-          classCapacity: "",
-          classDuration: "",
-        });
       } else {
         // something went wrong on backend
         if (returnedClassDataFromBackend.data.message) {
@@ -239,9 +242,11 @@ const AddClass = () => {
             )}
           </div>
         </div>
-
         <button type="submit" className="btn add-btn">
           Add Class
+        </button>{" "}
+        <button onClick={clearForm} className="btn add-btn">
+          Clear Form
         </button>
       </form>
     </div>

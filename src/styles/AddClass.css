@@ -84,10 +84,14 @@
   border-color: #5e6b80;
 }
 
-.add-btn:hover,
-.add-btn:active {
+.add-btn:hover {
   background-color: #f2e5e3;
   color: #5e6b80;
+}
+
+.add-btn:active {
+  background-color: #74999f;
+  color: #f5f5f5;
 }
 
 .add-btn:focus {
