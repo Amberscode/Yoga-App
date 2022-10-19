@@ -38,11 +38,14 @@ const Schedule = () => {
 
       request.data.classes.map(function (obj) {
         obj.dateObject = new Date(obj.date);
+        obj.intTime = parseInt(obj.time);
       });
 
       console.log(request.data.classes);
 
-      setYogaClasses(request.data.classes);
+      setYogaClasses(
+        request.data.classes.sort((a, b) => a.intTime - b.intTime)
+      );
     } else {
       console.log("something went wrong");
     }
@@ -66,7 +69,6 @@ const Schedule = () => {
     }
   });
 
-  console.log("classes");
   console.log(dailyYogaClasses, "test");
 
   const convertTimeTo12Hr = (time) => {
