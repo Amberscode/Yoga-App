@@ -37,6 +37,7 @@ const AddClass = () => {
       classCapacity: "",
       classDuration: "",
     });
+    event.target.blur();
   };
 
   const handleAddClass = async (event) => {

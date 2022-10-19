@@ -12,6 +12,10 @@ const Class = (props) => {
     navigate(props.stylePage);
   };
 
+  const handleRegister = (event) => {
+    event.target.blur();
+  };
+
   return (
     <div className="row class-item">
       <p className="col-md-4 class-item-content class-time">
@@ -27,7 +31,9 @@ const Class = (props) => {
       <div className="col-md-3 class-item-content">
         {" "}
         {loggedIn ? (
-          <button className="btn register-btn">Register</button>
+          <button className="btn register-btn" onClick={handleRegister}>
+            Register
+          </button>
         ) : (
           <p className="not-signed-in-text">
             Please{" "}

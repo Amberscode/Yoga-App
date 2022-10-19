@@ -58,8 +58,20 @@
 
 .change-days-btn {
   margin: 2rem;
+  color: #f5f5f5;
+  background-color: #74999f;
+  border: none;
+  vertical-align: bottom;
 }
 
+.change-days-btn:focus {
+  box-shadow: 0 0 8px rgba(94, 107, 128, 0.7) !important;
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
+.change-days-btn:hover,
 .change-days-btn:active {
-  box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
+  background-color: #f2e5e3;
+  color: #5e6b80;
 }

@@ -12,14 +12,16 @@ const Schedule = () => {
   let daysArray = [];
   let dailyYogaClasses = [];
 
-  const addDays = () => {
+  const addDays = (event) => {
     setFirstDay(() => firstDay + 7);
     setLastDay(() => lastDay + 7);
+    event.target.blur();
   };
 
-  const subtractDays = () => {
+  const subtractDays = (event) => {
     setFirstDay(() => firstDay - 7);
     setLastDay(() => lastDay - 7);
+    event.target.blur();
   };
 
   for (let i = firstDay; i < lastDay; i++) {
