@@ -123,6 +123,10 @@ const SignUp = () => {
     }
   };
 
+  const addBlur = (event) => {
+    event.target.blur();
+  };
+
   return (
     <div className="login-page container-fluid">
       <div className="row">
@@ -227,7 +231,7 @@ const SignUp = () => {
                   <p className="error-text">Passwords do not match</p>
                 )}
               </div>
-              <button type="submit" className="btn login-btn">
+              <button type="submit" onClick={addBlur} className="btn login-btn">
                 Register
               </button>
             </form>

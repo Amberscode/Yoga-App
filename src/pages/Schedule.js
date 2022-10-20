@@ -9,18 +9,25 @@ const Schedule = () => {
 
   const [firstDay, setFirstDay] = useState(0);
   const [lastDay, setLastDay] = useState(7);
+  const [offset, setOffset] = useState(0);
   let daysArray = [];
   let dailyYogaClasses = [];
 
   const addDays = (event) => {
     setFirstDay(() => firstDay + 7);
     setLastDay(() => lastDay + 7);
+    setOffset(() => offset + 7);
+
+    callBackend(offset + 7);
     event.target.blur();
   };
 
   const subtractDays = (event) => {
     setFirstDay(() => firstDay - 7);
     setLastDay(() => lastDay - 7);
+    setOffset(() => offset - 7);
+
+    callBackend(offset - 7);
     event.target.blur();
   };
 
@@ -28,12 +35,17 @@ const Schedule = () => {
     daysArray.push(moment().add(i, "days").startOf("day").toDate()); // create native javascript object
   }
 
-  async function callBackend() {
-    let timestampToday = moment().startOf("day").unix();
+  async function callBackend(offsetParameter) {
+    let timeStart = null;
+    if (offsetParameter) {
+      timeStart = moment().startOf("day").add(offsetParameter, "days").unix();
+    } else {
+      timeStart = moment().startOf("day").unix();
+    }
     let end = 7;
 
     let request = await axios.get(
-      `http://localhost:80/classes?start=${timestampToday}&days=${end}`
+      `http://localhost:80/classes?start=${timeStart}&days=${end}`
     );
     if (request.data.success === true) {
       console.log(new Date(request.data.classes[0].date)); // create also native javascript object
@@ -113,7 +125,7 @@ const Schedule = () => {
         {daysArray.map((day, index) => (
           <div className="date-header" key={day}>
             {day.toDateString()}
-            {dailyYogaClasses[index] &&
+            {dailyYogaClasses[index] ? (
               dailyYogaClasses[index].map((yogaClass) => (
                 <div className="yoga-class" key={yogaClass._id}>
                   <Class
@@ -128,7 +140,10 @@ const Schedule = () => {
                     stylePage={`/${yogaClass.type}`}
                   />
                 </div>
-              ))}
+              ))
+            ) : (
+              <p className="yoga-class">No Classes Scheduled</p>
+            )}
           </div>
         ))}
         <div>

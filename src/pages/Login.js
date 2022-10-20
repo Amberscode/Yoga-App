@@ -28,6 +28,10 @@ const Login = () => {
     authCtx.logout();
   };
 
+  const addBlur = (event) => {
+    event.target.blur();
+  };
+
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
 
@@ -157,7 +161,7 @@ const Login = () => {
                   </small>
                 )}
               </div>
-              <button type="submit" className="btn login-btn">
+              <button type="submit" onClick={addBlur} className="btn login-btn">
                 Sign In
               </button>
             </form>

@@ -31,7 +31,11 @@ const Class = (props) => {
       <div className="col-md-3 class-item-content">
         {" "}
         {loggedIn ? (
-          <button className="btn register-btn" onClick={handleRegister}>
+          <button
+            className="btn register-btn"
+            disabled={false}
+            onClick={handleRegister}
+          >
             Register
           </button>
         ) : (
