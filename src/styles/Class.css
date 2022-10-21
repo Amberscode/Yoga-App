@@ -10,9 +10,9 @@
   text-align: center;
 }
 
-.class-time {
+/* .class-time {
   font-weight: bolder;
-}
+} */
 
 .class-type {
   color: #74999f;
@@ -44,7 +44,7 @@
 }
 
 .not-signed-in-text {
-  color: #74999f;
+  color: #5e6b80;
 }
 
 .login-link {

@@ -43,10 +43,12 @@
 
 .date-header {
   padding-left: 50px;
+  padding-top: 30px;
   text-align: left;
   /* background-color: #e0e0e0; */
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bolder;
+  color: #5e6b80;
 }
 
 .yoga-class {
@@ -74,4 +76,8 @@
 .change-days-btn:active {
   background-color: #f2e5e3;
   color: #5e6b80;
+}
+
+.days-buttons {
+  padding-top: 30px;
 }

@@ -12,6 +12,9 @@ const Schedule = () => {
   const [offset, setOffset] = useState(0);
   let daysArray = [];
   let dailyYogaClasses = [];
+  let currentTime = moment().unix();
+
+  console.log(currentTime);
 
   const addDays = (event) => {
     setFirstDay(() => firstDay + 7);
@@ -53,10 +56,16 @@ const Schedule = () => {
       request.data.classes.map(function (obj) {
         obj.dateObject = new Date(obj.date);
         obj.intTime = parseInt(obj.time);
+        obj.dateSeconds = moment(obj.date).unix();
+        obj.hourSeconds = obj.intTime * 3600;
+        obj.splitTime = obj.time.split(":");
+        obj.minutes = parseInt(obj.splitTime[1]);
+        obj.minSeconds = obj.minutes * 60;
+        obj.timeInSeconds = obj.minSeconds + obj.hourSeconds + obj.dateSeconds;
       });
 
       console.log(request.data.classes);
-
+      // sort yoga classes by time
       setYogaClasses(
         request.data.classes.sort((a, b) => a.intTime - b.intTime)
       );
@@ -138,6 +147,7 @@ const Schedule = () => {
                     classTeacher={yogaClass.teacher}
                     classCapacity={yogaClass.capacity}
                     stylePage={`/${yogaClass.type}`}
+                    disabled={yogaClass.timeInSeconds < currentTime}
                   />
                 </div>
               ))
@@ -146,7 +156,7 @@ const Schedule = () => {
             )}
           </div>
         ))}
-        <div>
+        <div className="days-buttons">
           {" "}
           <button
             className="btn btn-outline-success change-days-btn"

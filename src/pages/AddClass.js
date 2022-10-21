@@ -40,6 +40,10 @@ const AddClass = () => {
     event.target.blur();
   };
 
+  const addBlur = (event) => {
+    event.target.blur();
+  };
+
   const handleAddClass = async (event) => {
     event.preventDefault();
 
@@ -243,7 +247,7 @@ const AddClass = () => {
             )}
           </div>
         </div>
-        <button type="submit" className="btn add-btn">
+        <button type="submit" onClick={addBlur} className="btn add-btn">
           Add Class
         </button>{" "}
         <button onClick={clearForm} className="btn add-btn">

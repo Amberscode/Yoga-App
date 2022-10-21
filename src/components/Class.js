@@ -33,10 +33,10 @@ const Class = (props) => {
         {loggedIn ? (
           <button
             className="btn register-btn"
-            disabled={false}
+            disabled={props.disabled}
             onClick={handleRegister}
           >
-            Register
+            {props.disabled ? "Registration Closed" : "Register"}
           </button>
         ) : (
           <p className="not-signed-in-text">
