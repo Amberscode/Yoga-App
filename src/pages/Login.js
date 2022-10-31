@@ -95,6 +95,8 @@ const Login = () => {
         authCtx.login(userToken, userName, expiry, isAdmin);
         // if(token.length > 0) return true
 
+        console.log(loginDataFromBackend.data.isAdmin);
+
         setEmailValue("");
         setPasswordValue("");
         navigate("/yourclasses");

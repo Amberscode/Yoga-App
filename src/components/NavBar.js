@@ -10,6 +10,7 @@ const NavBar = () => {
   const [show, setShow] = useState(false);
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
+  const isAdmin = authCtx.isAdmin;
 
   const logoutHandler = () => {
     authCtx.logout();
@@ -71,6 +72,17 @@ const NavBar = () => {
                   onClick={() => setShow(false)}
                 >
                   Your Classes
+                </Link>
+              </li>
+            )}
+            {isAdmin && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/addclass"
+                  onClick={() => setShow(false)}
+                >
+                  Add Classes
                 </Link>
               </li>
             )}

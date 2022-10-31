@@ -5,6 +5,7 @@ import "../styles/Schedule.css";
 import moment from "moment";
 
 const Schedule = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [yogaClasses, setYogaClasses] = useState([]);
 
   const [firstDay, setFirstDay] = useState(0);
@@ -39,6 +40,7 @@ const Schedule = () => {
   }
 
   async function callBackend(offsetParameter) {
+    setIsLoading(true);
     let timeStart = null;
     if (offsetParameter) {
       timeStart = moment().startOf("day").add(offsetParameter, "days").unix();
@@ -50,6 +52,7 @@ const Schedule = () => {
     let request = await axios.get(
       `http://localhost:80/classes?start=${timeStart}&days=${end}`
     );
+    setIsLoading(false);
     if (request.data.success === true) {
       console.log(new Date(request.data.classes[0].date)); // create also native javascript object
 
@@ -130,48 +133,56 @@ const Schedule = () => {
           </div>
         </div>
       </div>
-      <div className="row schedule-page-content">
-        {daysArray.map((day, index) => (
-          <div className="date-header" key={day}>
-            {day.toDateString()}
-            {dailyYogaClasses[index] ? (
-              dailyYogaClasses[index].map((yogaClass) => (
-                <div className="yoga-class" key={yogaClass._id}>
-                  <Class
-                    classType={yogaClass.type}
-                    classDate={yogaClass.dateObject}
-                    classStartTime={convertTimeTo12Hr(yogaClass.time)}
-                    classEndTime={convertTimeTo12Hr(
-                      calculateEndTime(yogaClass.time, yogaClass.duration)
-                    )}
-                    classTeacher={yogaClass.teacher}
-                    classCapacity={yogaClass.capacity}
-                    stylePage={`/${yogaClass.type}`}
-                    disabled={yogaClass.timeInSeconds < currentTime}
-                  />
-                </div>
-              ))
-            ) : (
-              <p className="yoga-class">No Classes Scheduled</p>
-            )}
+      {!isLoading ? (
+        <div className="row schedule-page-content">
+          {daysArray.map((day, index) => (
+            <div className="date-header" key={day}>
+              {day.toDateString()}
+              {dailyYogaClasses[index] ? (
+                dailyYogaClasses[index].map((yogaClass) => (
+                  <div className="yoga-class" key={yogaClass._id}>
+                    <Class
+                      classType={yogaClass.type}
+                      classDate={yogaClass.dateObject}
+                      classStartTime={convertTimeTo12Hr(yogaClass.time)}
+                      classEndTime={convertTimeTo12Hr(
+                        calculateEndTime(yogaClass.time, yogaClass.duration)
+                      )}
+                      classTeacher={yogaClass.teacher}
+                      classCapacity={yogaClass.capacity}
+                      stylePage={`/${yogaClass.type}`}
+                      disabled={yogaClass.timeInSeconds < currentTime}
+                    />
+                  </div>
+                ))
+              ) : (
+                <p className="yoga-class">No Classes Scheduled</p>
+              )}
+            </div>
+          ))}
+          <div className="days-buttons">
+            {" "}
+            <button
+              className="btn btn-outline-success change-days-btn"
+              onClick={subtractDays}
+            >
+              Previous Week
+            </button>{" "}
+            <button
+              className="btn btn-outline-success change-days-btn"
+              onClick={addDays}
+            >
+              Next Week
+            </button>
           </div>
-        ))}
-        <div className="days-buttons">
-          {" "}
-          <button
-            className="btn btn-outline-success change-days-btn"
-            onClick={subtractDays}
-          >
-            Previous Week
-          </button>{" "}
-          <button
-            className="btn btn-outline-success change-days-btn"
-            onClick={addDays}
-          >
-            Next Week
-          </button>
         </div>
-      </div>
+      ) : (
+        <div className="row schedule-page-content spinner">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"> Loading...</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

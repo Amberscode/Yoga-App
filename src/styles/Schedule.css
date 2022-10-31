@@ -81,3 +81,8 @@
 .days-buttons {
   padding-top: 30px;
 }
+
+.spinner {
+  align-items: center;
+  justify-content: center;
+}

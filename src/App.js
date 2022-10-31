@@ -40,7 +40,7 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path="yourclasses" element={<YourClasses />} />
         )}
-        {authCtx.isLoggedIn && <Route path="addclass" element={<AddClass />} />}
+        {authCtx.isAdmin && <Route path="addclass" element={<AddClass />} />}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>

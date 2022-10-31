@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../styles/YourClasses.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

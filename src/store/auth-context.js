@@ -6,7 +6,7 @@ const AuthContext = React.createContext({
   isLoggedIn: false,
   userName: "",
   isAdmin: false,
-  login: (token, firstName, expiry) => {},
+  login: (token, firstName, expiry, isAdmin) => {},
   logout: () => {},
 });
 
@@ -15,6 +15,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
     localStorage.removeItem("expiry");
+    localStorage.removeItem("isAdmin");
   };
 
   const initialToken = localStorage.getItem("token");
@@ -23,7 +24,8 @@ export const AuthContextProvider = (props) => {
   const savedName = localStorage.getItem("userName");
   const [userName, setUserName] = useState("");
 
-  const [userIsAdmin, setUserIsAdmin] = useState("false");
+  const isAdmin = localStorage.getItem("isAdmin");
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
 
   const expiry = localStorage.getItem("expiry");
   const currentTime = moment().valueOf();
@@ -34,6 +36,7 @@ export const AuthContextProvider = (props) => {
   const logOutHandler = () => {
     setToken(null);
     removeToken();
+    setUserIsAdmin(false);
   };
 
   const logInHandler = (token, firstName, expiry, isAdmin) => {
@@ -43,6 +46,8 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("expiry", expiry);
     localStorage.setItem("token", token);
     localStorage.setItem("userName", firstName);
+    localStorage.setItem("isAdmin", isAdmin);
+    console.log(isAdmin);
   };
 
   const contextValue = {
