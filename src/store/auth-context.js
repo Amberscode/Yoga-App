@@ -25,7 +25,7 @@ export const AuthContextProvider = (props) => {
   const [userName, setUserName] = useState("");
 
   const isAdmin = localStorage.getItem("isAdmin");
-  const [userIsAdmin, setUserIsAdmin] = useState(false);
+  const [userIsAdmin, setUserIsAdmin] = useState(isAdmin);
 
   const expiry = localStorage.getItem("expiry");
   const currentTime = moment().valueOf();

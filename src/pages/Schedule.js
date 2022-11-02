@@ -35,6 +35,18 @@ const Schedule = () => {
     event.target.blur();
   };
 
+  const registerHandler = (event) => {
+    event.target.blur();
+  };
+
+  const editClassHandler = (event) => {
+    event.target.blur();
+  };
+
+  const deleteClassHandler = (event) => {
+    event.target.blur();
+  };
+
   for (let i = firstDay; i < lastDay; i++) {
     daysArray.push(moment().add(i, "days").startOf("day").toDate()); // create native javascript object
   }
@@ -152,6 +164,10 @@ const Schedule = () => {
                       classCapacity={yogaClass.capacity}
                       stylePage={`/${yogaClass.type}`}
                       disabled={yogaClass.timeInSeconds < currentTime}
+                      classId={yogaClass._id}
+                      handleRegister={registerHandler}
+                      handleEditClass={editClassHandler}
+                      handleDeleteClass={deleteClassHandler}
                     />
                   </div>
                 ))

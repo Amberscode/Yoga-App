@@ -12,10 +12,6 @@ const Class = (props) => {
     navigate(props.stylePage);
   };
 
-  const handleRegister = (event) => {
-    event.target.blur();
-  };
-
   return (
     <div className="row class-item">
       <p className="col-md-4 class-item-content class-time">
@@ -34,7 +30,7 @@ const Class = (props) => {
           <button
             className="btn register-btn"
             disabled={props.disabled}
-            onClick={handleRegister}
+            onClick={props.handleRegister}
           >
             {props.disabled ? "Registration Closed" : "Register"}
           </button>
@@ -48,6 +44,24 @@ const Class = (props) => {
           </p>
         )}
       </div>
+      {authCtx.isAdmin && (
+        <div>
+          <button
+            className="btn register-btn"
+            disabled={props.disabled}
+            onClick={props.handleEditClass}
+          >
+            {props.disabled ? "Complete" : "Edit Class"}
+          </button>{" "}
+          <button
+            className="btn register-btn"
+            disabled={props.disabled}
+            onClick={props.handleDeleteClass}
+          >
+            {props.disabled ? "Complete" : "Delete Class"}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
