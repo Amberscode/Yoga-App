@@ -14,6 +14,7 @@ const Schedule = () => {
   let daysArray = [];
   let dailyYogaClasses = [];
   let currentTime = moment().unix();
+  let selectedClass = "";
 
   console.log(currentTime);
 
@@ -35,8 +36,17 @@ const Schedule = () => {
     event.target.blur();
   };
 
-  const registerHandler = (event) => {
+  const registerHandler = (classId) => async (event) => {
     event.target.blur();
+    let request = await axios.post("http://localhost:80/class/register", {
+      classId: classId,
+      token: window.localStorage.getItem("token"),
+    });
+
+    // call was a success
+    if (request.data.success === true) {
+      // display register button to say registered
+    }
   };
 
   const editClassHandler = (event) => {
@@ -165,7 +175,7 @@ const Schedule = () => {
                       stylePage={`/${yogaClass.type}`}
                       disabled={yogaClass.timeInSeconds < currentTime}
                       classId={yogaClass._id}
-                      handleRegister={registerHandler}
+                      handleRegister={registerHandler(yogaClass._id)}
                       handleEditClass={editClassHandler}
                       handleDeleteClass={deleteClassHandler}
                     />
