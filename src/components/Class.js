@@ -44,6 +44,7 @@ const Class = (props) => {
           </p>
         )}
       </div>
+      {props.isRegistered && <div>User Is Registered</div>}
       {authCtx.isAdmin && (
         <div>
           <button

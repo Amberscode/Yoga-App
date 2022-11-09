@@ -3,6 +3,7 @@ import Class from "../components/Class";
 import axios from "axios";
 import "../styles/Schedule.css";
 import moment from "moment";
+import userEvent from "@testing-library/user-event";
 
 const Schedule = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,10 +12,13 @@ const Schedule = () => {
   const [firstDay, setFirstDay] = useState(0);
   const [lastDay, setLastDay] = useState(7);
   const [offset, setOffset] = useState(0);
+
   let daysArray = [];
   let dailyYogaClasses = [];
   let currentTime = moment().unix();
-  let selectedClass = "";
+
+  const [registeredClasses, setRegisteredClasses] = useState([]);
+  let classesAreDoneLoading = false;
 
   console.log(currentTime);
 
@@ -23,7 +27,7 @@ const Schedule = () => {
     setLastDay(() => lastDay + 7);
     setOffset(() => offset + 7);
 
-    callBackend(offset + 7);
+    getAllClasses(offset + 7);
     event.target.blur();
   };
 
@@ -32,12 +36,11 @@ const Schedule = () => {
     setLastDay(() => lastDay - 7);
     setOffset(() => offset - 7);
 
-    callBackend(offset - 7);
+    getAllClasses(offset - 7);
     event.target.blur();
   };
 
   const registerHandler = (classId) => async (event) => {
-    event.target.blur();
     let request = await axios.post("http://localhost:80/class/register", {
       classId: classId,
       token: window.localStorage.getItem("token"),
@@ -45,8 +48,14 @@ const Schedule = () => {
 
     // call was a success
     if (request.data.success === true) {
+      window.location.reload();
+      // let temporaryClasses = registeredClasses;
+      // temporaryClasses.push(classId);
+      // setRegisteredClasses(temporaryClasses);
+
       // display register button to say registered
     }
+    event.target.blur();
   };
 
   const editClassHandler = (event) => {
@@ -61,8 +70,39 @@ const Schedule = () => {
     daysArray.push(moment().add(i, "days").startOf("day").toDate()); // create native javascript object
   }
 
-  async function callBackend(offsetParameter) {
+  // get user classes from backend
+  async function getUserClasses() {
+    if (!window.localStorage.getItem("token")) return [];
+    let data = {
+      token: window.localStorage.getItem("token"),
+    };
+    let request = await axios.post(`http://localhost:80/user/classes`, data);
+    console.log(request.data.classes, "test");
+
+    let idArray = request.data.classes.map((item) => item._id);
+    return idArray;
+  }
+
+  // everything that needs to be loaded before the page is displayed
+  async function loadPage() {
     setIsLoading(true);
+    await getAllClasses();
+    let temporaryClasses = await getUserClasses();
+    setRegisteredClasses(temporaryClasses);
+    console.log(registeredClasses, "registeredClasses");
+    setIsLoading(false);
+  }
+
+  // check if user registered in class
+
+  const checkRegistration = (classId) => {
+    console.log(registeredClasses, "registered classes");
+    console.log(registeredClasses.includes(classId), "class id");
+    return registeredClasses.includes(classId);
+  };
+
+  // get all classes + users that are registered in it
+  async function getAllClasses(offsetParameter) {
     let timeStart = null;
     if (offsetParameter) {
       timeStart = moment().startOf("day").add(offsetParameter, "days").unix();
@@ -74,7 +114,7 @@ const Schedule = () => {
     let request = await axios.get(
       `http://localhost:80/classes?start=${timeStart}&days=${end}`
     );
-    setIsLoading(false);
+    console.log(request.data);
     if (request.data.success === true) {
       console.log(new Date(request.data.classes[0].date)); // create also native javascript object
 
@@ -99,7 +139,7 @@ const Schedule = () => {
     }
   }
   useEffect(() => {
-    callBackend();
+    loadPage();
   }, []);
 
   yogaClasses.map((yogaClass) => {
@@ -178,6 +218,7 @@ const Schedule = () => {
                       handleRegister={registerHandler(yogaClass._id)}
                       handleEditClass={editClassHandler}
                       handleDeleteClass={deleteClassHandler}
+                      isRegistered={checkRegistration(yogaClass._id)}
                     />
                   </div>
                 ))
