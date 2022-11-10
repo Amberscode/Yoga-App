@@ -43,6 +43,25 @@
   color: #5e6b80;
 }
 
+.admin-btn {
+  color: #f5f5f5;
+  background-color: #74999f;
+  border: none;
+  vertical-align: bottom;
+}
+
+.admin-btn:hover,
+.admin-btn:active {
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
+.admin-btn:focus {
+  box-shadow: 0 0 8px rgba(94, 107, 128, 0.7) !important;
+  background-color: #f2e5e3;
+  color: #5e6b80;
+}
+
 .not-signed-in-text {
   color: #5e6b80;
 }

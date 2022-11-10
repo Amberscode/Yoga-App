@@ -22,10 +22,11 @@ export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(initialToken);
 
   const savedName = localStorage.getItem("userName");
-  const [userName, setUserName] = useState("");
+  // const [userName, setUserName] = useState("");
 
-  const isAdmin = localStorage.getItem("isAdmin");
-  const [userIsAdmin, setUserIsAdmin] = useState(isAdmin);
+  const [userIsAdmin, setUserIsAdmin] = useState(
+    JSON.parse(window.localStorage.getItem("isAdmin"))
+  );
 
   const expiry = localStorage.getItem("expiry");
   const currentTime = moment().valueOf();
@@ -35,12 +36,12 @@ export const AuthContextProvider = (props) => {
 
   const logOutHandler = () => {
     setToken(null);
-    removeToken();
     setUserIsAdmin(false);
+    removeToken();
   };
 
   const logInHandler = (token, firstName, expiry, isAdmin) => {
-    setUserName(firstName);
+    // setUserName(firstName);
     setToken(token);
     setUserIsAdmin(isAdmin);
     localStorage.setItem("expiry", expiry);
@@ -58,6 +59,7 @@ export const AuthContextProvider = (props) => {
     login: logInHandler,
     logout: logOutHandler,
   };
+  console.log(contextValue);
 
   return (
     <AuthContext.Provider value={contextValue}>

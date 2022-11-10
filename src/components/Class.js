@@ -6,6 +6,7 @@ import "../styles/Class.css";
 const Class = (props) => {
   const authCtx = useContext(AuthContext);
   const loggedIn = authCtx.isLoggedIn;
+  const isAdmin = authCtx.isAdmin;
   const navigate = useNavigate();
 
   const navigateToStylePage = () => {
@@ -26,7 +27,11 @@ const Class = (props) => {
       <p className=" col-md-2 class-item-content">{props.classTeacher}</p>
       <div className="col-md-3 class-item-content">
         {loggedIn && !props.isRegistered && (
-          <button className="btn register-btn" disabled={props.disabled}>
+          <button
+            className="btn register-btn"
+            disabled={props.disabled}
+            onClick={props.handleRegister}
+          >
             {props.disabled ? "Registration Closed" : "Register"}
           </button>
         )}
@@ -45,17 +50,17 @@ const Class = (props) => {
           </p>
         )}
       </div>
-      {authCtx.isAdmin && (
+      {isAdmin && (
         <div>
           <button
-            className="btn register-btn"
+            className="btn admin-btn"
             disabled={props.disabled}
             onClick={props.handleEditClass}
           >
             {props.disabled ? "Complete" : "Edit Class"}
           </button>{" "}
           <button
-            className="btn register-btn"
+            className="btn admin-btn"
             disabled={props.disabled}
             onClick={props.handleDeleteClass}
           >

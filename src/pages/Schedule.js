@@ -49,7 +49,7 @@ const Schedule = () => {
       // temporaryClasses.push(classId);
       // setRegisteredClasses(temporaryClasses);
     }
-    loadPage();
+    // loadPage();
     event.target.blur();
   };
 
