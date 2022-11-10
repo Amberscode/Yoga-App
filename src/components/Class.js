@@ -25,16 +25,17 @@ const Class = (props) => {
       </p>
       <p className=" col-md-2 class-item-content">{props.classTeacher}</p>
       <div className="col-md-3 class-item-content">
-        {" "}
-        {loggedIn ? (
-          <button
-            className="btn register-btn"
-            disabled={props.disabled}
-            onClick={props.handleRegister}
-          >
+        {loggedIn && !props.isRegistered && (
+          <button className="btn register-btn" disabled={props.disabled}>
             {props.disabled ? "Registration Closed" : "Register"}
           </button>
-        ) : (
+        )}
+        {loggedIn && props.isRegistered && (
+          <button className="btn register-btn" disabled={true}>
+            Registered
+          </button>
+        )}
+        {!loggedIn && (
           <p className="not-signed-in-text">
             Please{" "}
             <Link className="login-link" to="/login">
@@ -44,7 +45,6 @@ const Class = (props) => {
           </p>
         )}
       </div>
-      {props.isRegistered && <div>User Is Registered</div>}
       {authCtx.isAdmin && (
         <div>
           <button

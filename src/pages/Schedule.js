@@ -3,7 +3,6 @@ import Class from "../components/Class";
 import axios from "axios";
 import "../styles/Schedule.css";
 import moment from "moment";
-import userEvent from "@testing-library/user-event";
 
 const Schedule = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,9 +17,6 @@ const Schedule = () => {
   let currentTime = moment().unix();
 
   const [registeredClasses, setRegisteredClasses] = useState([]);
-  let classesAreDoneLoading = false;
-
-  console.log(currentTime);
 
   const addDays = (event) => {
     setFirstDay(() => firstDay + 7);
@@ -52,9 +48,8 @@ const Schedule = () => {
       // let temporaryClasses = registeredClasses;
       // temporaryClasses.push(classId);
       // setRegisteredClasses(temporaryClasses);
-
-      // display register button to say registered
     }
+    loadPage();
     event.target.blur();
   };
 
@@ -77,7 +72,6 @@ const Schedule = () => {
       token: window.localStorage.getItem("token"),
     };
     let request = await axios.post(`http://localhost:80/user/classes`, data);
-    console.log(request.data.classes, "test");
 
     let idArray = request.data.classes.map((item) => item._id);
     return idArray;
@@ -89,15 +83,12 @@ const Schedule = () => {
     await getAllClasses();
     let temporaryClasses = await getUserClasses();
     setRegisteredClasses(temporaryClasses);
-    console.log(registeredClasses, "registeredClasses");
     setIsLoading(false);
   }
 
   // check if user registered in class
 
   const checkRegistration = (classId) => {
-    console.log(registeredClasses, "registered classes");
-    console.log(registeredClasses.includes(classId), "class id");
     return registeredClasses.includes(classId);
   };
 
@@ -114,10 +105,7 @@ const Schedule = () => {
     let request = await axios.get(
       `http://localhost:80/classes?start=${timeStart}&days=${end}`
     );
-    console.log(request.data);
     if (request.data.success === true) {
-      console.log(new Date(request.data.classes[0].date)); // create also native javascript object
-
       request.data.classes.map(function (obj) {
         obj.dateObject = new Date(obj.date);
         obj.intTime = parseInt(obj.time);
@@ -129,7 +117,6 @@ const Schedule = () => {
         obj.timeInSeconds = obj.minSeconds + obj.hourSeconds + obj.dateSeconds;
       });
 
-      console.log(request.data.classes);
       // sort yoga classes by time
       setYogaClasses(
         request.data.classes.sort((a, b) => a.intTime - b.intTime)
@@ -156,8 +143,6 @@ const Schedule = () => {
       }
     }
   });
-
-  console.log(dailyYogaClasses, "test");
 
   const convertTimeTo12Hr = (time) => {
     const timeArray = time.split(":");
@@ -245,8 +230,8 @@ const Schedule = () => {
         </div>
       ) : (
         <div className="row schedule-page-content spinner">
-          <div class="spinner-border" role="status">
-            <span class="sr-only"> Loading...</span>
+          <div className="spinner-border" role="status">
+            <span className="sr-only"> Loading...</span>
           </div>
         </div>
       )}
