@@ -37,19 +37,15 @@ const Schedule = () => {
   };
 
   const registerHandler = (classId) => async (event) => {
-    let request = await axios.post("http://localhost:80/class/register", {
+    let cloneArray = [...registeredClasses];
+    cloneArray.push(classId);
+    setRegisteredClasses(cloneArray);
+
+    await axios.post("http://localhost:80/class/register", {
       classId: classId,
       token: window.localStorage.getItem("token"),
     });
 
-    // call was a success
-    if (request.data.success === true) {
-      window.location.reload();
-      // let temporaryClasses = registeredClasses;
-      // temporaryClasses.push(classId);
-      // setRegisteredClasses(temporaryClasses);
-    }
-    // loadPage();
     event.target.blur();
   };
 

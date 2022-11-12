@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/YourClasses.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +12,18 @@ const YourClasses = () => {
   const logoutHandler = () => {
     authCtx.logout();
   };
+
+  // get user classes from backend
+  async function getUserClasses() {
+    if (!window.localStorage.getItem("token")) return [];
+    let data = {
+      token: window.localStorage.getItem("token"),
+    };
+    let request = await axios.post(`http://localhost:80/user/classes`, data);
+
+    let idArray = request.data.classes.map((item) => item._id);
+    return idArray;
+  }
 
   return (
     <div className="yourclasses-page container-fluid">
