@@ -1,13 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/YourClasses.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpa } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../store/auth-context";
+import moment from "moment";
 
 const YourClasses = () => {
   const authCtx = useContext(AuthContext);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [registeredClasses, setRegisteredClasses] = useState([]);
+  let currentTime = moment().unix();
 
   const logoutHandler = () => {
     authCtx.logout();
@@ -20,36 +25,102 @@ const YourClasses = () => {
       token: window.localStorage.getItem("token"),
     };
     let request = await axios.post(`http://localhost:80/user/classes`, data);
+    if (request.data.success === true) {
+      let userClasses = request.data.classes.map(function (obj) {
+        obj.dateObject = new Date(obj.date);
+        obj.intTime = parseInt(obj.time);
+        obj.dateSeconds = moment(obj.date).unix();
+        obj.hourSeconds = obj.intTime * 3600;
+        obj.splitTime = obj.time.split(":");
+        obj.minutes = parseInt(obj.splitTime[1]);
+        obj.minSeconds = obj.minutes * 60;
+        obj.timeInSeconds = obj.minSeconds + obj.hourSeconds + obj.dateSeconds;
+        return obj;
+      });
 
-    let idArray = request.data.classes.map((item) => item._id);
-    return idArray;
+      // sort classes by date
+      return userClasses.sort((a, b) => a.dateSeconds - b.dateSeconds);
+    } else {
+      console.log("something went wrong");
+    }
   }
+
+  console.log(registeredClasses);
+
+  async function loadPage() {
+    setIsLoading(true);
+    let temporaryClasses = await getUserClasses();
+    setRegisteredClasses(temporaryClasses);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    loadPage();
+  }, []);
+
+  const convertTimeTo12Hr = (time) => {
+    const timeArray = time.split(":");
+    let ampm = "am";
+    if (timeArray[0] >= 12) {
+      ampm = "pm";
+    }
+    if (timeArray[0] > 12) {
+      timeArray[0] = timeArray[0] - 12;
+    }
+    const formattedTime = timeArray[0] + ":" + timeArray[1] + " " + ampm;
+    return formattedTime;
+  };
+
+  const padTo2Digits = (num) => {
+    return num.toString().padStart(2, "0");
+  };
+
+  const calculateEndTime = (time, duration) => {
+    const splitArray = time.split(":");
+    let convertHrToMin = splitArray[0] * 60;
+    let totalMin = parseInt(convertHrToMin) + parseInt(splitArray[1]);
+    let endTimeMin = totalMin + parseInt(duration);
+    let minutes = endTimeMin % 60;
+    let hours = Math.floor(endTimeMin / 60);
+    return `${padTo2Digits(hours)}: ${padTo2Digits(minutes)}`;
+  };
 
   return (
     <div className="yourclasses-page container-fluid">
       <div className="row">
-        <div className="col-lg-5  yourclasses-design order-2 order-lg-1">
+        <div className="col-lg-4  yourclasses-design order-2 order-lg-1">
           <FontAwesomeIcon icon={faSpa} className="yoga-icon-yourclasses" />
           <p className="yoga-logo-text-yourclasses">Yoga Studio</p>
         </div>
         {authCtx.isLoggedIn ? (
-          <div className="col-lg-7 order-1 order-lg-2">
+          <div className="col-lg-8 order-1 order-lg-2">
             <p className="user-logged-in-welcome">
               Welcome, {authCtx.userName}
             </p>
-            <p className="yourclasses-text">You have no upcoming classes.</p>
+            {registeredClasses.length > 0 ? (
+              registeredClasses.map((yourClass) => (
+                <div className="row" key={yourClass._id}>
+                  <p className="col-md-3 yourclasses-text">
+                    {yourClass.dateObject.toDateString()}
+                  </p>
+                  <p className="col-md-3 yourclasses-text">
+                    {convertTimeTo12Hr(yourClass.time)} -{" "}
+                    {convertTimeTo12Hr(
+                      calculateEndTime(yourClass.time, yourClass.duration)
+                    )}
+                  </p>
+                  <p className="col-md-2 yourclasses-text">
+                    {yourClass.type} Yoga
+                  </p>
+                  <p className="col-md-2 yourclasses-text">
+                    {yourClass.teacher}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="yourclasses-text">You have no upcoming classes.</p>
+            )}
 
-            {/* {props.yogaClasses.map((yogaClass) => (
-        <Class
-          classType={props.type}
-          classDate={props.date}
-          classTime={props.time}
-          classTeacher={props.teacher}
-          classCapacity={props.capacity}
-          classDuration={props.duration}
-          key={props.id}
-        />
-      ))} */}
             <div className="container text-center">
               <Link
                 className="btn btn-outline-success yourclasses-btn"
