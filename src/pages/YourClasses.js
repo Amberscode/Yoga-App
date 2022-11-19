@@ -38,8 +38,15 @@ const YourClasses = () => {
         return obj;
       });
 
+      // show only classes today and in the future
+      let futureClasses = userClasses.filter((userClass) =>
+        moment(userClass.date).isSameOrAfter(Date.now(), "day")
+      );
+
+      console.log(futureClasses, "futureclasses");
+
       // sort classes by date
-      return userClasses.sort(
+      return futureClasses.sort(
         (a, b) => a.dateSeconds - b.dateSeconds || a.intTime - b.intTime
       );
     } else {
@@ -115,8 +122,13 @@ const YourClasses = () => {
                     </p>
                     <p className="col-md-2">{yourClass.type} Yoga</p>
                     <p className="col-md-2">{yourClass.teacher}</p>
-                    <button className="btn btn-outline-success deregister-btn">
-                      Cancel
+                    <button
+                      className="btn btn-outline-success deregister-btn"
+                      disabled={yourClass.timeInSeconds < currentTime + 3600}
+                    >
+                      {yourClass.timeInSeconds < currentTime + 3600
+                        ? "Registration Closed"
+                        : "Cancel"}
                     </button>
                   </div>
                 ))}{" "}

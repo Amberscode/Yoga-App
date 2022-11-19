@@ -95,6 +95,10 @@
   box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
 }
 
+.deregister-btn:disabled {
+  color: #e0e0e0;
+}
+
 @media (max-width: 767px) {
   .deregister-btn {
     float: right;
