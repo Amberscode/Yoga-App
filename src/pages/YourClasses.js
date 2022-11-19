@@ -106,35 +106,52 @@ const YourClasses = () => {
             <p className="user-logged-in-welcome">
               Welcome, {authCtx.userName}
             </p>
-            {registeredClasses.length > 0 ? (
+            {!isLoading ? (
               <div>
-                <p className="yourclasses-text">Your Upcoming Classes</p>
-                {registeredClasses.map((yourClass) => (
-                  <div className="row classes-list-text" key={yourClass._id}>
-                    <p className="col-md-3 fw-bolder">
-                      {yourClass.dateObject.toDateString()}
-                    </p>
-                    <p className="col-md-3">
-                      {convertTimeTo12Hr(yourClass.time)} -{" "}
-                      {convertTimeTo12Hr(
-                        calculateEndTime(yourClass.time, yourClass.duration)
-                      )}
-                    </p>
-                    <p className="col-md-2">{yourClass.type} Yoga</p>
-                    <p className="col-md-2">{yourClass.teacher}</p>
-                    <button
-                      className="btn btn-outline-success deregister-btn"
-                      disabled={yourClass.timeInSeconds < currentTime + 3600}
-                    >
-                      {yourClass.timeInSeconds < currentTime + 3600
-                        ? "Registration Closed"
-                        : "Cancel"}
-                    </button>
+                {registeredClasses.length > 0 ? (
+                  <div>
+                    <p className="yourclasses-text">Your Upcoming Classes</p>
+                    {registeredClasses.map((yourClass) => (
+                      <div
+                        className="row classes-list-text"
+                        key={yourClass._id}
+                      >
+                        <p className="col-md-3 fw-bolder">
+                          {yourClass.dateObject.toDateString()}
+                        </p>
+                        <p className="col-md-3">
+                          {convertTimeTo12Hr(yourClass.time)} -{" "}
+                          {convertTimeTo12Hr(
+                            calculateEndTime(yourClass.time, yourClass.duration)
+                          )}
+                        </p>
+                        <p className="col-md-2">{yourClass.type} Yoga</p>
+                        <p className="col-md-2">{yourClass.teacher}</p>
+                        <button
+                          className="btn btn-outline-success deregister-btn"
+                          disabled={
+                            yourClass.timeInSeconds < currentTime + 3600
+                          }
+                        >
+                          {yourClass.timeInSeconds < currentTime + 3600
+                            ? "Registration Closed"
+                            : "Cancel"}
+                        </button>
+                      </div>
+                    ))}{" "}
                   </div>
-                ))}{" "}
+                ) : (
+                  <p className="noclasses-text">
+                    You have no upcoming classes.
+                  </p>
+                )}
               </div>
             ) : (
-              <p className="noclasses-text">You have no upcoming classes.</p>
+              <div className="row spinner">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"> Loading...</span>
+                </div>
+              </div>
             )}
 
             <div className="container text-center">
