@@ -38,14 +38,45 @@
 
 .yourclasses-text {
   color: white;
-  font-size: 20px;
-  margin-top: 10%;
+  font-size: 25px;
+  margin-top: 8%;
+  margin-bottom: 5%;
+  text-align: left;
+  margin-left: 10px;
+}
+
+@media (max-width: 767px) {
+  .yourclasses-text {
+    text-align: center;
+  }
+}
+
+.noclasses-text {
+  color: white;
+  font-size: 25px;
+  margin-top: 8%;
+  margin-bottom: 20%;
   text-align: center;
+}
+
+.classes-list-text {
+  color: white;
+  font-size: 17px;
+  margin-top: 5px;
+  margin-bottom: 5%;
+  margin-left: 10px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .classes-list-text {
+    text-align: center;
+  }
 }
 
 .yourclasses-btn {
   margin-bottom: 2rem;
-  margin-top: 20%;
+  margin-top: 5%;
   margin-left: 10px;
   margin-right: 10px;
   width: 180px;
@@ -53,4 +84,20 @@
 
 .yourclasses-btn:active {
   box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
+}
+
+.deregister-btn {
+  width: 90px;
+  height: 35px;
+}
+
+.deregister-btn:active {
+  box-shadow: 0 0 8px rgba(245, 245, 245, 0.6) !important;
+}
+
+@media (max-width: 767px) {
+  .deregister-btn {
+    float: right;
+    margin-left: 70%;
+  }
 }

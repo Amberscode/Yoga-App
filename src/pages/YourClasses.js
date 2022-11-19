@@ -39,7 +39,9 @@ const YourClasses = () => {
       });
 
       // sort classes by date
-      return userClasses.sort((a, b) => a.dateSeconds - b.dateSeconds);
+      return userClasses.sort(
+        (a, b) => a.dateSeconds - b.dateSeconds || a.intTime - b.intTime
+      );
     } else {
       console.log("something went wrong");
     }
@@ -88,37 +90,39 @@ const YourClasses = () => {
   return (
     <div className="yourclasses-page container-fluid">
       <div className="row">
-        <div className="col-lg-4  yourclasses-design order-2 order-lg-1">
+        <div className="col-lg-5  yourclasses-design order-2 order-lg-1">
           <FontAwesomeIcon icon={faSpa} className="yoga-icon-yourclasses" />
           <p className="yoga-logo-text-yourclasses">Yoga Studio</p>
         </div>
         {authCtx.isLoggedIn ? (
-          <div className="col-lg-8 order-1 order-lg-2">
+          <div className="col-lg-7 order-1 order-lg-2">
             <p className="user-logged-in-welcome">
               Welcome, {authCtx.userName}
             </p>
             {registeredClasses.length > 0 ? (
-              registeredClasses.map((yourClass) => (
-                <div className="row" key={yourClass._id}>
-                  <p className="col-md-3 yourclasses-text">
-                    {yourClass.dateObject.toDateString()}
-                  </p>
-                  <p className="col-md-3 yourclasses-text">
-                    {convertTimeTo12Hr(yourClass.time)} -{" "}
-                    {convertTimeTo12Hr(
-                      calculateEndTime(yourClass.time, yourClass.duration)
-                    )}
-                  </p>
-                  <p className="col-md-2 yourclasses-text">
-                    {yourClass.type} Yoga
-                  </p>
-                  <p className="col-md-2 yourclasses-text">
-                    {yourClass.teacher}
-                  </p>
-                </div>
-              ))
+              <div>
+                <p className="yourclasses-text">Your Upcoming Classes</p>
+                {registeredClasses.map((yourClass) => (
+                  <div className="row classes-list-text" key={yourClass._id}>
+                    <p className="col-md-3 fw-bolder">
+                      {yourClass.dateObject.toDateString()}
+                    </p>
+                    <p className="col-md-3">
+                      {convertTimeTo12Hr(yourClass.time)} -{" "}
+                      {convertTimeTo12Hr(
+                        calculateEndTime(yourClass.time, yourClass.duration)
+                      )}
+                    </p>
+                    <p className="col-md-2">{yourClass.type} Yoga</p>
+                    <p className="col-md-2">{yourClass.teacher}</p>
+                    <button className="btn btn-outline-success deregister-btn">
+                      Cancel
+                    </button>
+                  </div>
+                ))}{" "}
+              </div>
             ) : (
-              <p className="yourclasses-text">You have no upcoming classes.</p>
+              <p className="noclasses-text">You have no upcoming classes.</p>
             )}
 
             <div className="container text-center">
