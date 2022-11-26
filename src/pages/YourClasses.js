@@ -54,6 +54,20 @@ const YourClasses = () => {
     }
   }
 
+  const deRegisterHandler = (classId) => async (event) => {
+    console.log("deregister");
+    let cloneArray = [...registeredClasses];
+    let updatedClasses = cloneArray.filter((yoga) => yoga._id !== classId);
+    setRegisteredClasses(updatedClasses);
+    console.log(updatedClasses);
+
+    await axios.post("http://localhost:80/class/deregister", {
+      classId: classId,
+      token: window.localStorage.getItem("token"),
+    });
+    event.target.blur();
+  };
+
   console.log(registeredClasses);
 
   async function loadPage() {
@@ -128,6 +142,7 @@ const YourClasses = () => {
                         <p className="col-md-2">{yourClass.type} Yoga</p>
                         <p className="col-md-2">{yourClass.teacher}</p>
                         <button
+                          onClick={deRegisterHandler(yourClass._id)}
                           className="btn btn-outline-success deregister-btn"
                           disabled={
                             yourClass.timeInSeconds < currentTime + 3600
@@ -147,7 +162,7 @@ const YourClasses = () => {
                 )}
               </div>
             ) : (
-              <div className="row spinner">
+              <div className="row spinner your-spinner">
                 <div className="spinner-border" role="status">
                   <span className="sr-only"> Loading...</span>
                 </div>
