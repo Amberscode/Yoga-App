@@ -53,7 +53,15 @@ const Schedule = () => {
     event.target.blur();
   };
 
-  const deleteClassHandler = (event) => {
+  const deleteClassHandler = (classId, registeredUsers) => async (event) => {
+    if (registeredUsers.length > 0) {
+      alert("You cannot delete a class with registered users");
+    }
+    await axios.post("http://localhost:80/class/delete", {
+      classId: classId,
+      token: window.localStorage.getItem("token"),
+    });
+    getAllClasses();
     event.target.blur();
   };
 
@@ -198,7 +206,10 @@ const Schedule = () => {
                       classId={yogaClass._id}
                       handleRegister={registerHandler(yogaClass._id)}
                       handleEditClass={editClassHandler}
-                      handleDeleteClass={deleteClassHandler}
+                      handleDeleteClass={deleteClassHandler(
+                        yogaClass._id,
+                        yogaClass.registeredUsers
+                      )}
                       isRegistered={checkRegistration(yogaClass._id)}
                     />
                   </div>

@@ -55,11 +55,9 @@ const YourClasses = () => {
   }
 
   const deRegisterHandler = (classId) => async (event) => {
-    console.log("deregister");
     let cloneArray = [...registeredClasses];
     let updatedClasses = cloneArray.filter((yoga) => yoga._id !== classId);
     setRegisteredClasses(updatedClasses);
-    console.log(updatedClasses);
 
     await axios.post("http://localhost:80/class/deregister", {
       classId: classId,
@@ -67,8 +65,6 @@ const YourClasses = () => {
     });
     event.target.blur();
   };
-
-  console.log(registeredClasses);
 
   async function loadPage() {
     setIsLoading(true);
