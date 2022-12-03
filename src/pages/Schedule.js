@@ -51,7 +51,8 @@ const Schedule = () => {
     event.target.blur();
   };
 
-  const editClassHandler = (classId) => {
+  const editClassHandler = (classId) => async (event) => {
+    event.preventDefault();
     console.log("edit");
     navigate(`/editclass/${classId}`);
   };

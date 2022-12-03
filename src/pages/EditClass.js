@@ -104,7 +104,7 @@ const EditClass = () => {
       setClassTeacherIsValid(true);
     }
 
-    if (classFormValue.classCapacity.trim() === "") {
+    if (classFormValue.classCapacity.length === 0) {
       setClassCapacityIsValid(false);
       return;
     } else {
@@ -130,9 +130,12 @@ const EditClass = () => {
 
     try {
       // send user data to backend
+      let data = updatedClassData;
+      data.id = id;
+
       let returnedClassDataFromBackend = await axios.post(
         "http://localhost:80/class/edit",
-        updatedClassData
+        data
       );
 
       if (returnedClassDataFromBackend.data.success === true) {
