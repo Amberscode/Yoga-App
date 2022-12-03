@@ -3,8 +3,10 @@ import Class from "../components/Class";
 import axios from "axios";
 import "../styles/Schedule.css";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const Schedule = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [yogaClasses, setYogaClasses] = useState([]);
 
@@ -49,8 +51,9 @@ const Schedule = () => {
     event.target.blur();
   };
 
-  const editClassHandler = (event) => {
-    event.target.blur();
+  const editClassHandler = (classId) => {
+    console.log("edit");
+    navigate(`/editclass/${classId}`);
   };
 
   const deleteClassHandler = (classId, registeredUsers) => async (event) => {
@@ -205,7 +208,7 @@ const Schedule = () => {
                       disabled={yogaClass.timeInSeconds < currentTime}
                       classId={yogaClass._id}
                       handleRegister={registerHandler(yogaClass._id)}
-                      handleEditClass={editClassHandler}
+                      handleEditClass={editClassHandler(yogaClass._id)}
                       handleDeleteClass={deleteClassHandler(
                         yogaClass._id,
                         yogaClass.registeredUsers

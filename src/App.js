@@ -15,6 +15,7 @@ import Acro from "./pages/Acro";
 import Power from "./pages/Power";
 import YourClasses from "./pages/YourClasses";
 import AddClass from "./pages/AddClass";
+import EditClass from "./pages/EditClass";
 import ScrollToTop from "./ScrollToTop";
 import AuthContext from "./store/auth-context";
 
@@ -41,6 +42,9 @@ function App() {
           <Route path="yourclasses" element={<YourClasses />} />
         )}
         {authCtx.isAdmin && <Route path="addclass" element={<AddClass />} />}
+        {authCtx.isAdmin && (
+          <Route path="editclass/:id" element={<EditClass />} />
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>
