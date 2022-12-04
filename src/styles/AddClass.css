@@ -103,3 +103,8 @@
   color: rgb(184, 15, 40);
   text-align: center;
 }
+
+.spinner-text {
+  color: lightgray;
+  margin-top: 20%;
+}
