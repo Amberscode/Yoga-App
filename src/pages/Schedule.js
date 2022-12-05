@@ -9,8 +9,6 @@ const Schedule = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [yogaClasses, setYogaClasses] = useState([]);
-  const [toggleCancelButton, setToggleCancelButton] = useState("Cancel Class");
-  const [isCanceled, setIsCanceled] = useState(false);
 
   const [firstDay, setFirstDay] = useState(0);
   const [lastDay, setLastDay] = useState(7);
@@ -50,17 +48,6 @@ const Schedule = () => {
       token: window.localStorage.getItem("token"),
     });
 
-    event.target.blur();
-  };
-
-  const cancelClassHandler = (event) => {
-    if (toggleCancelButton === "Cancel Class") {
-      setToggleCancelButton("Undo");
-    } else {
-      setToggleCancelButton("Cancel Class");
-    }
-    setIsCanceled(!isCanceled);
-    console.log(isCanceled);
     event.target.blur();
   };
 
@@ -227,10 +214,7 @@ const Schedule = () => {
                         yogaClass._id,
                         yogaClass.registeredUsers
                       )}
-                      handleCancelClass={cancelClassHandler}
                       isRegistered={checkRegistration(yogaClass._id)}
-                      cancelButton={toggleCancelButton}
-                      isCanceled={isCanceled}
                     />
                   </div>
                 ))

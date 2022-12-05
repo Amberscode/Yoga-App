@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../store/auth-context";
 import "../styles/Class.css";
@@ -65,13 +65,6 @@ const Class = (props) => {
             onClick={props.handleDeleteClass}
           >
             {props.disabled ? "Complete" : "Delete Class"}
-          </button>{" "}
-          <button
-            className="btn admin-btn"
-            disabled={props.disabled}
-            onClick={props.handleCancelClass}
-          >
-            {props.disabled ? "Complete" : props.cancelButton}
           </button>
         </div>
       )}

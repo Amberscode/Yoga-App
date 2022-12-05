@@ -73,6 +73,41 @@ const EditClass = () => {
     event.target.blur();
   };
 
+  // only runs when you click button
+  const handleCancelClass = async (event) => {
+    event.preventDefault();
+
+    const updatedClassData = {
+      isCanceled: !yogaClass.isCanceled,
+    };
+
+    try {
+      // send user data to backend
+      let data = updatedClassData;
+      data.id = id;
+
+      let returnedClassDataFromBackend = await axios.post(
+        "http://localhost:80/class/cancel",
+        data
+      );
+
+      if (returnedClassDataFromBackend.data.success === true) {
+        setYogaClass({ ...yogaClass, isCanceled: data.isCanceled });
+      } else {
+        // something went wrong on backend
+        if (returnedClassDataFromBackend.data.message) {
+          alert(returnedClassDataFromBackend.data.message);
+        } else {
+          alert("something went wrong");
+        }
+      }
+    } catch (e) {
+      console.log(e, "something went wrong");
+    }
+
+    event.target.blur();
+  };
+
   const handleEditClass = async (event) => {
     event.preventDefault();
 
@@ -167,6 +202,7 @@ const EditClass = () => {
               value={classFormValue.classType}
               onChange={handleClassFormChange}
               aria-describedby="classType"
+              disabled={yogaClass.isCanceled}
             >
               <option value="">--please choose a class type--</option>
               <option value="Acro">Acro Yoga</option>
@@ -190,6 +226,7 @@ const EditClass = () => {
               value={classFormValue.classDate}
               onChange={handleClassFormChange}
               aria-describedby="classDate"
+              disabled={yogaClass.isCanceled}
             />
             {!classDateIsValid && (
               <p className="error-text">Please enter a date</p>
@@ -208,6 +245,7 @@ const EditClass = () => {
               value={classFormValue.classTime}
               onChange={handleClassFormChange}
               aria-describedby="classTime"
+              disabled={yogaClass.isCanceled}
             />
             {!classTimeIsValid && (
               <p className="error-text">Please enter a class time</p>
@@ -223,6 +261,7 @@ const EditClass = () => {
               value={classFormValue.classTeacher}
               onChange={handleClassFormChange}
               aria-describedby="classTeacher"
+              disabled={yogaClass.isCanceled}
             />
             {!classTeacherIsValid && (
               <p className="error-text">Please enter a teacher</p>
@@ -239,6 +278,7 @@ const EditClass = () => {
               id="classCapacity"
               value={classFormValue.classCapacity}
               onChange={handleClassFormChange}
+              disabled={yogaClass.isCanceled}
             />
             {!classCapacityIsValid && (
               <p className="error-text">Please enter a class capacity</p>
@@ -257,6 +297,7 @@ const EditClass = () => {
                 value="60"
                 checked={classFormValue.classDuration === "60"}
                 onChange={handleClassFormChange}
+                disabled={yogaClass.isCanceled}
               />
               <label className="form-check-label" htmlFor="classDuration60">
                 60 min
@@ -271,6 +312,7 @@ const EditClass = () => {
                 value="90"
                 checked={classFormValue.classDuration === "90"}
                 onChange={handleClassFormChange}
+                disabled={yogaClass.isCanceled}
               />
               <label className="form-check-label" htmlFor="classDuration90">
                 90 min
@@ -280,11 +322,19 @@ const EditClass = () => {
               )}
             </div>
           </div>
-          <button type="submit" onClick={addBlur} className="btn add-btn">
+          <button
+            type="submit"
+            onClick={addBlur}
+            disabled={yogaClass.isCanceled}
+            className="btn add-btn"
+          >
             Save Changes
           </button>{" "}
           <button onClick={cancelEdit} className="btn add-btn">
             Back
+          </button>{" "}
+          <button onClick={handleCancelClass} className="btn add-btn">
+            {yogaClass.isCanceled ? "Undo Cancel" : "Cancel Class"}
           </button>
         </form>
       ) : (

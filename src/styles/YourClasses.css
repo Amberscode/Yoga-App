@@ -74,6 +74,34 @@
   }
 }
 
+.class-canceled-text {
+  color: #abb1ba;
+  font-size: 17px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .class-canceled-text {
+    text-align: center;
+  }
+}
+
+.cancel-text {
+  color: #abb1ba;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5%;
+  margin-right: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .cancel-text {
+    text-align: center;
+  }
+}
+
 .yourclasses-btn {
   margin-bottom: 2rem;
   margin-top: 5%;
@@ -87,7 +115,7 @@
 }
 
 .deregister-btn {
-  width: 90px;
+  width: 100px;
   height: 35px;
 }
 

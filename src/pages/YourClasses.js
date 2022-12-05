@@ -123,7 +123,11 @@ const YourClasses = () => {
                     <p className="yourclasses-text">Your Upcoming Classes</p>
                     {registeredClasses.map((yourClass) => (
                       <div
-                        className="row classes-list-text"
+                        className={
+                          yourClass.isCanceled
+                            ? "row class-canceled-text"
+                            : "row classes-list-text"
+                        }
                         key={yourClass._id}
                       >
                         <p className="col-md-3 fw-bolder">
@@ -136,18 +140,24 @@ const YourClasses = () => {
                           )}
                         </p>
                         <p className="col-md-2">{yourClass.type} Yoga</p>
-                        <p className="col-md-2">{yourClass.teacher}</p>
-                        <button
-                          onClick={deRegisterHandler(yourClass._id)}
-                          className="btn btn-outline-success deregister-btn"
-                          disabled={
-                            yourClass.timeInSeconds < currentTime + 3600
-                          }
-                        >
-                          {yourClass.timeInSeconds < currentTime + 3600
-                            ? "Registration Closed"
-                            : "Cancel"}
-                        </button>
+                        {!yourClass.isCanceled && (
+                          <p className="col-md-2">{yourClass.teacher}</p>
+                        )}
+                        {yourClass.isCanceled ? (
+                          <p className="cancel-text col-md-3">Class Canceled</p>
+                        ) : (
+                          <button
+                            onClick={deRegisterHandler(yourClass._id)}
+                            className="btn btn-outline-success deregister-btn"
+                            disabled={
+                              yourClass.timeInSeconds < currentTime + 3600
+                            }
+                          >
+                            {yourClass.timeInSeconds < currentTime + 3600
+                              ? "Registration Closed"
+                              : "Deregister"}
+                          </button>
+                        )}
                       </div>
                     ))}{" "}
                   </div>
