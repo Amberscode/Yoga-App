@@ -4,6 +4,15 @@ import moment from "moment";
 import "../styles/AddClass.css";
 
 const AddClass = () => {
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${year}-${month}-${day}`;
+
   const [classFormValue, setClassFormValue] = useState({
     classType: "",
     classDate: "",
@@ -57,8 +66,15 @@ const AddClass = () => {
     if (classFormValue.classDate.trim() === "") {
       setClassDateIsValid(false);
       return;
+    } else if (
+      new Date(classFormValue.classDate).getTime() <
+      new Date(currentDate).getTime()
+    ) {
+      setClassDateIsValid(false);
+      return;
     } else {
       setClassDateIsValid(true);
+      console.log(classFormValue.classDate);
     }
 
     if (classFormValue.classTime.trim() === "") {
@@ -159,7 +175,7 @@ const AddClass = () => {
             aria-describedby="classDate"
           />
           {!classDateIsValid && (
-            <p className="error-text">Please enter a date</p>
+            <p className="error-text">Please enter a future date</p>
           )}
         </div>
         <div className="form-group">

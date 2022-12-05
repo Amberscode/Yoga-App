@@ -161,6 +161,9 @@ const Schedule = () => {
     if (timeArray[0] > 12) {
       timeArray[0] = timeArray[0] - 12;
     }
+    if (timeArray[0] < 10) {
+      timeArray[0] = parseInt(timeArray[0], 10);
+    }
     const formattedTime = timeArray[0] + ":" + timeArray[1] + " " + ampm;
     return formattedTime;
   };
