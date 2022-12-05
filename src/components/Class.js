@@ -26,7 +26,12 @@ const Class = (props) => {
       </p>
       <p className=" col-md-2 class-item-content">{props.classTeacher}</p>
       <div className="col-md-3 class-item-content">
-        {loggedIn && !props.isRegistered && (
+        {props.isCanceled && (
+          <button className="btn register-btn" disabled={true}>
+            Class Canceled
+          </button>
+        )}
+        {loggedIn && !props.isRegistered && !props.isCanceled && (
           <button
             className="btn register-btn"
             disabled={props.disabled}
@@ -35,7 +40,7 @@ const Class = (props) => {
             {props.disabled ? "Registration Closed" : "Register"}
           </button>
         )}
-        {loggedIn && props.isRegistered && (
+        {loggedIn && props.isRegistered && !props.isCanceled && (
           <button className="btn register-btn" disabled={true}>
             Registered
           </button>

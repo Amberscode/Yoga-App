@@ -215,6 +215,7 @@ const Schedule = () => {
                         yogaClass.registeredUsers
                       )}
                       isRegistered={checkRegistration(yogaClass._id)}
+                      isCanceled={yogaClass.isCanceled}
                     />
                   </div>
                 ))
