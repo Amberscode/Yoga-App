@@ -182,14 +182,6 @@ const Schedule = () => {
     return `${padTo2Digits(hours)}: ${padTo2Digits(minutes)}`;
   };
 
-  const userList = (students) => {
-    if (students.length > 0) {
-      return students;
-    } else {
-      return "No students registered";
-    }
-  };
-
   return (
     <div className="schedule-page">
       <div className="container-fluid schedule-page-header ">
@@ -227,7 +219,7 @@ const Schedule = () => {
                       )}
                       isRegistered={checkRegistration(yogaClass._id)}
                       isCanceled={yogaClass.isCanceled}
-                      registeredUsers={userList(yogaClass.registeredUsers)}
+                      registeredUsers={yogaClass.registeredUsers}
                     />
                   </div>
                 ))

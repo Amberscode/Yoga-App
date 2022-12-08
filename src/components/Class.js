@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../store/auth-context";
 import "../styles/Class.css";
@@ -10,6 +10,17 @@ const Class = (props) => {
   const navigate = useNavigate();
 
   const [showStudents, setShowStudents] = useState(false);
+  const [usersRegistered, setUsersRegistered] = useState(false);
+  const usersArray = props.registeredUsers;
+
+  const studentsRegistered = () => {
+    if (usersArray.length > 0) {
+      setUsersRegistered(true);
+    }
+  };
+  useEffect(() => {
+    studentsRegistered();
+  }, []);
 
   const toggleStudentList = (event) => {
     setShowStudents(!showStudents);
@@ -62,7 +73,14 @@ const Class = (props) => {
           </p>
         )}
       </div>
-      {showStudents && <p>{props.registeredUsers}</p>}
+      {showStudents && usersRegistered && (
+        <ul>
+          {usersArray.map((user) => (
+            <li key={user}>{user}</li>
+          ))}
+        </ul>
+      )}
+      {showStudents && !usersRegistered && <p>No Students Registered</p>}
       {isAdmin && (
         <div>
           <button
