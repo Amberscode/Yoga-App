@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../store/auth-context";
 import "../styles/Class.css";
@@ -8,6 +8,13 @@ const Class = (props) => {
   const loggedIn = authCtx.isLoggedIn;
   const isAdmin = authCtx.isAdmin;
   const navigate = useNavigate();
+
+  const [showStudents, setShowStudents] = useState(false);
+
+  const toggleStudentList = (event) => {
+    setShowStudents(!showStudents);
+    event.target.blur();
+  };
 
   const navigateToStylePage = () => {
     navigate(props.stylePage);
@@ -55,6 +62,7 @@ const Class = (props) => {
           </p>
         )}
       </div>
+      {showStudents && <p>{props.registeredUsers}</p>}
       {isAdmin && (
         <div>
           <button
@@ -70,6 +78,9 @@ const Class = (props) => {
             onClick={props.handleDeleteClass}
           >
             {props.disabled ? "Complete" : "Delete Class"}
+          </button>{" "}
+          <button className="btn admin-btn" onClick={toggleStudentList}>
+            {showStudents ? "Close Student List" : "See Student List"}
           </button>
         </div>
       )}

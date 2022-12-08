@@ -9,6 +9,8 @@ import moment from "moment";
 
 const YourClasses = () => {
   const authCtx = useContext(AuthContext);
+  const userName = authCtx.userName;
+  const greetName = userName.charAt(0).toUpperCase() + userName.slice(1);
 
   const [isLoading, setIsLoading] = useState(false);
   const [registeredClasses, setRegisteredClasses] = useState([]);
@@ -113,9 +115,7 @@ const YourClasses = () => {
         </div>
         {authCtx.isLoggedIn ? (
           <div className="col-lg-7 order-1 order-lg-2">
-            <p className="user-logged-in-welcome">
-              Welcome, {authCtx.userName}
-            </p>
+            <p className="user-logged-in-welcome">Welcome, {greetName}</p>
             {!isLoading ? (
               <div>
                 {registeredClasses.length > 0 ? (
