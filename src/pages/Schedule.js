@@ -179,7 +179,7 @@ const Schedule = () => {
     let endTimeMin = totalMin + parseInt(duration);
     let minutes = endTimeMin % 60;
     let hours = Math.floor(endTimeMin / 60);
-    return `${padTo2Digits(hours)}: ${padTo2Digits(minutes)}`;
+    return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}`;
   };
 
   return (
