@@ -9,23 +9,24 @@ const Class = (props) => {
   const isAdmin = authCtx.isAdmin;
   const navigate = useNavigate();
 
-  const [showStudents, setShowStudents] = useState(false);
-  const [usersRegistered, setUsersRegistered] = useState(false);
-  const usersArray = props.registeredUsers;
+  //TO SHOW LIST OF REGISTERED USERS ON ADMIN SCHEDULE PAGE
+  // const [showStudents, setShowStudents] = useState(false);
+  // const [usersRegistered, setUsersRegistered] = useState(false);
+  // const usersArray = props.registeredUsers;
 
-  const studentsRegistered = () => {
-    if (usersArray.length > 0) {
-      setUsersRegistered(true);
-    }
-  };
-  useEffect(() => {
-    studentsRegistered();
-  }, []);
+  // const studentsRegistered = () => {
+  //   if (usersArray.length > 0) {
+  //     setUsersRegistered(true);
+  //   }
+  // };
+  // useEffect(() => {
+  //   studentsRegistered();
+  // }, []);
 
-  const toggleStudentList = (event) => {
-    setShowStudents(!showStudents);
-    event.target.blur();
-  };
+  // const toggleStudentList = (event) => {
+  //   setShowStudents(!showStudents);
+  //   event.target.blur();
+  // };
 
   const navigateToStylePage = () => {
     navigate(props.stylePage);
@@ -73,14 +74,14 @@ const Class = (props) => {
           </p>
         )}
       </div>
-      {showStudents && usersRegistered && (
+      {/* /* {showStudents && usersRegistered && (
         <ul>
           {usersArray.map((user) => (
             <li key={user}>{user}</li>
           ))}
         </ul>
       )}
-      {showStudents && !usersRegistered && <p>No Students Registered</p>}
+      {showStudents && !usersRegistered && <p>No Students Registered</p>} */}
       {isAdmin && (
         <div>
           <button
@@ -97,9 +98,9 @@ const Class = (props) => {
           >
             {props.disabled ? "Complete" : "Delete Class"}
           </button>{" "}
-          <button className="btn admin-btn" onClick={toggleStudentList}>
+          {/* <button className="btn admin-btn" onClick={toggleStudentList}>
             {showStudents ? "Close Student List" : "See Student List"}
-          </button>
+          </button> */}
         </div>
       )}
     </div>
