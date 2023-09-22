@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+.class-capacity {
+  font-size: 19px;
+  margin-top: 10px;
+}
+
 /* .class-time {
   font-weight: bolder;
 } */

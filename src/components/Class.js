@@ -82,27 +82,34 @@ const Class = (props) => {
         </ul>
       )}
       {showStudents && !usersRegistered && <p>No Students Registered</p>} */}
-      {isAdmin && (
-        <div>
-          <button
-            className="btn admin-btn"
-            disabled={props.disabled}
-            onClick={props.handleEditClass}
-          >
-            {props.disabled ? "Complete" : "Edit Class"}
-          </button>{" "}
-          <button
-            className="btn admin-btn"
-            disabled={props.disabled}
-            onClick={props.handleDeleteClass}
-          >
-            {props.disabled ? "Complete" : "Delete Class"}
-          </button>{" "}
-          {/* <button className="btn admin-btn" onClick={toggleStudentList}>
+      <div>
+        {isAdmin && (
+          <div>
+            <button
+              className="btn admin-btn"
+              disabled={props.disabled}
+              onClick={props.handleEditClass}
+            >
+              {props.disabled ? "Complete" : "Edit Class"}
+            </button>{" "}
+            <button
+              className="btn admin-btn"
+              disabled={props.disabled}
+              onClick={props.handleDeleteClass}
+            >
+              {props.disabled ? "Complete" : "Delete Class"}
+            </button>{" "}
+            {/* <button className="btn admin-btn" onClick={toggleStudentList}>
             {showStudents ? "Close Student List" : "See Student List"}
           </button> */}
-        </div>
-      )}
+          </div>
+        )}
+        {!props.disabled && (
+          <p className="class-capacity">
+            {props.classCapacity} spaces available
+          </p>
+        )}
+      </div>
     </div>
   );
 };
